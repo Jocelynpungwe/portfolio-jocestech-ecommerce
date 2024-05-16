@@ -11,6 +11,7 @@ const connectDB = require('./db/connect')
 
 // routers
 const authRoutes = require('./routes/authRoutes')
+const userRoutes = require('./routes/userRoutes')
 
 // middleware
 const errorHandlerMiddleware = require('./middleware/error-handler')
@@ -23,13 +24,8 @@ app.get('/', (req, res) => {
   res.send('e-commerce api')
 })
 
-app.get('/api/v1', (req, res) => {
-  console.log(req.signedCookies)
-  res.send('e-commerce api')
-})
-
 app.use('/api/v1/auth', authRoutes)
-
+app.use('/api/v1/user', userRoutes)
 app.use(notFoundMiddleware)
 app.use(errorHandlerMiddleware)
 
