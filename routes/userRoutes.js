@@ -14,12 +14,16 @@ const authorizeMiddleware = require('../middleware/authorize')
 router.get(
   '/',
   authenticationMiddleware,
-  authorizeMiddleware('admin', 'owner'),
+  authorizeMiddleware('admin'),
   getAllUsers
 )
-router.get('/showMe', showCurrentUser)
-router.patch('/updateUser', updateUser)
-router.patch('/updateUserPassword', updateUserPassword)
+router.get('/showMe', authenticationMiddleware, showCurrentUser)
+router.patch('/updateUser', authenticationMiddleware, updateUser)
+router.patch(
+  '/updateUserPassword',
+  authenticationMiddleware,
+  updateUserPassword
+)
 router.get('/:id', authenticationMiddleware, getSingleUser)
 
 module.exports = router
