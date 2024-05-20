@@ -9,6 +9,8 @@ const {
   uploadImage,
 } = require('../controllers/productController')
 
+const { getSingleProductReviews } = require('../controllers/reviewController')
+
 const authenticationMiddleware = require('../middleware/authentication')
 const authorizeMiddleware = require('../middleware/authorize')
 
@@ -38,5 +40,7 @@ router.post(
   authorizeMiddleware('admin'),
   uploadImage
 )
+
+router.get('/:id', getSingleProductReviews)
 
 module.exports = router

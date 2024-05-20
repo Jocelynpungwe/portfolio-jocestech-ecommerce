@@ -17,6 +17,8 @@ const authRoutes = require('./routes/authRoutes')
 const userRoutes = require('./routes/userRoutes')
 const productRoutes = require('./routes/productRoutes')
 const reviewRoutes = require('./routes/reviewRoutes')
+const orderRoutes = require('./routes/orderRoutes')
+
 // middleware
 const errorHandlerMiddleware = require('./middleware/error-handler')
 const notFoundMiddleware = require('./middleware/not-found')
@@ -31,6 +33,7 @@ app.use('/api/v1/auth', authRoutes)
 app.use('/api/v1/user', userRoutes)
 app.use('/api/v1/products', productRoutes)
 app.use('/api/v1/reviews', reviewRoutes)
+app.use('/api/v1/orders', orderRoutes)
 
 app.use(notFoundMiddleware)
 app.use(errorHandlerMiddleware)
