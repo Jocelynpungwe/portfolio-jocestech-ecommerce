@@ -19,19 +19,26 @@ const ProductSchema = mongoose.Schema(
       maxlength: [1000, 'Description can not be more than 1000 characters'],
     },
     image: {
-      type: String,
-      default: 'images/uploads/example.jpeg',
+      type: [String],
+      required: [true, 'Please provide product image'],
     },
     category: {
       type: String,
       required: [true, 'Please provide product category'],
-      enum: ['office', 'kitchen', 'bedroom'],
+      enum: [
+        'phones',
+        'laptops',
+        'game consoles',
+        'headphones',
+        'computers',
+        'speakers',
+      ],
     },
     company: {
       type: String,
       required: [true, 'Please provide company'],
       enum: {
-        values: ['ikea', 'liddy', 'marcos'],
+        values: ['apple', 'dell', 'hp', 'sony', 'microsoft'],
         message: '{VALUE} is not supported',
       },
     },
