@@ -1,6 +1,7 @@
 require('dotenv').config()
 require('express-async-errors')
 
+const path = require('path')
 // express
 const express = require('express')
 const app = express()
@@ -23,6 +24,7 @@ const orderRoutes = require('./routes/orderRoutes')
 const errorHandlerMiddleware = require('./middleware/error-handler')
 const notFoundMiddleware = require('./middleware/not-found')
 
+app.use(express.static(path.resolve(__dirname, './client/dist')))
 app.use(express.json())
 app.use(cookieParser(process.env.JWT_SECRET))
 
@@ -34,6 +36,10 @@ app.use('/api/v1/user', userRoutes)
 app.use('/api/v1/products', productRoutes)
 app.use('/api/v1/reviews', reviewRoutes)
 app.use('/api/v1/orders', orderRoutes)
+
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, './client/dist', 'index.html'))
+})
 
 app.use(notFoundMiddleware)
 app.use(errorHandlerMiddleware)
