@@ -1,8 +1,26 @@
-import React from 'react'
+import { useEffect } from 'react'
 import styled from 'styled-components'
 import { Filters, ProductList, Sort, PageHero } from '../components'
+import {
+  filterProducs,
+  getfilterProduct,
+  sortProduct,
+} from '../features/filters/filterSlice'
+import { useDispatch, useSelector } from 'react-redux'
 
 const ProductsPage = () => {
+  const dispatch = useDispatch()
+  const { filters, sort } = useSelector((store) => store.filter)
+
+  useEffect(() => {
+    dispatch(getfilterProduct())
+  }, [])
+
+  useEffect(() => {
+    dispatch(filterProducs())
+    dispatch(sortProduct())
+  }, [filters, sort])
+
   return (
     <main>
       <PageHero title="products" />

@@ -17,6 +17,10 @@ import Sort from './Sort'
 import PageHero from './PageHero'
 import GridView from './GridView'
 import ListView from './ListView'
+import ProductImages from './ProductImages'
+import AddToCart from './AddToCart'
+import Stars from './Stars'
+import AmountButtons from './AmountButtons'
 
 export {
   Navbar,
@@ -38,4 +42,8 @@ export {
   PageHero,
   GridView,
   ListView,
+  ProductImages,
+  AddToCart,
+  Stars,
+  AmountButtons,
 }

@@ -52,7 +52,6 @@ const userSlice = createSlice({
       })
       .addCase(registerUser.rejected, (state, { payload }) => {
         state.isLoading = false
-        console.log(payload)
       })
       .addCase(loginUser.pending, (state) => {
         state.isLoading = true

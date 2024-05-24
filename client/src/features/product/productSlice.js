@@ -16,7 +16,19 @@ export const getAllProducts = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const { data } = await customeFetch.get('/products')
-      console.log(data)
+
+      return data
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data.msg)
+    }
+  }
+)
+
+export const getSingleProduct = createAsyncThunk(
+  'product/getSingleProducts',
+  async (id, thunkAPI) => {
+    try {
+      const { data } = await customeFetch.get(`/products/${id}`)
       return data
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.msg)
@@ -43,11 +55,25 @@ const productSlice = createSlice({
         state.featured_products = products.filter((product) => {
           return product.featured === true
         })
-        console.log(current(state))
       })
       .addCase(getAllProducts.rejected, (state, { payload }) => {
         state.products_loading = false
         state.products_error = true
+      })
+      .addCase(getSingleProduct.pending, (state) => {
+        state.single_product_loading = true
+        state.single_product_error = false
+      })
+      .addCase(getSingleProduct.fulfilled, (state, { payload }) => {
+        state.single_product_loading = false
+        state.single_product_error = false
+        const { product } = payload
+        state.single_product = product
+        console.log(product)
+      })
+      .addCase(getSingleProduct.rejected, (state, { payload }) => {
+        state.single_product_loading = false
+        state.single_product_error = true
       })
   },
 })
