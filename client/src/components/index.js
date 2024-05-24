@@ -21,6 +21,8 @@ import ProductImages from './ProductImages'
 import AddToCart from './AddToCart'
 import Stars from './Stars'
 import AmountButtons from './AmountButtons'
+import CartContent from './CartContent'
+import StripeCheckout from './StripeCheckout'
 
 export {
   Navbar,
@@ -46,4 +48,6 @@ export {
   AddToCart,
   Stars,
   AmountButtons,
+  CartContent,
+  StripeCheckout,
 }

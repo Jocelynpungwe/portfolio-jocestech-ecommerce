@@ -1,5 +1,5 @@
-import { createSlice, createAsyncThunk, current } from '@reduxjs/toolkit'
-
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { getAllProducts } from '../product/productSlice'
 const initialState = {
   filtered_products: [],
   all_products: [],
@@ -23,6 +23,8 @@ export const getfilterProduct = createAsyncThunk(
   'filter/getfilterProduct',
   async (_, thunkAPI) => {
     try {
+      thunkAPI.dispatch(getAllProducts())
+      console.log(thunkAPI.getState())
       return thunkAPI.getState().products.products
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.msg)

@@ -7,12 +7,15 @@ import Product from './Product'
 
 import { useSelector, useDispatch } from 'react-redux'
 import { getAllProducts } from '../features/product/productSlice'
+
 const FeaturedProduct = () => {
   const {
     products_loading: loading,
     products_error: error,
     featured_products: featured,
   } = useSelector((store) => store.products)
+  const { user } = useSelector((store) => store.user)
+
   const dispatch = useDispatch()
 
   useEffect(() => {

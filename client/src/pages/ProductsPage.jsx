@@ -7,6 +7,7 @@ import {
   sortProduct,
 } from '../features/filters/filterSlice'
 import { useDispatch, useSelector } from 'react-redux'
+import { getAllProducts } from '../features/product/productSlice'
 
 const ProductsPage = () => {
   const dispatch = useDispatch()

@@ -16,7 +16,6 @@ export const getAllProducts = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const { data } = await customeFetch.get('/products')
-
       return data
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.msg)
@@ -69,7 +68,6 @@ const productSlice = createSlice({
         state.single_product_error = false
         const { product } = payload
         state.single_product = product
-        console.log(product)
       })
       .addCase(getSingleProduct.rejected, (state, { payload }) => {
         state.single_product_loading = false
