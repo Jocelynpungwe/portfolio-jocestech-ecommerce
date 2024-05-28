@@ -12,6 +12,7 @@ import {
   ProductsPage,
   SingleProductPage,
   RegistrationOrLoginPage,
+  PaymentSuccessfullPage,
 } from './pages'
 
 function App() {
@@ -27,6 +28,11 @@ function App() {
         <Route path="products" element={<ProductsPage />} />
         <Route path="products/:id" element={<SingleProductPage />} />
         <Route path="checkout" element={<CheckoutPage />} />
+        <Route
+          path="payment-successfull"
+          element={<PaymentSuccessfullPage />}
+        />
+
         <Route path="*" element={<ErrorPage />} />
       </Routes>
       <Footer />

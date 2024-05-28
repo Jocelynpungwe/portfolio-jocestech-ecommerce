@@ -4,9 +4,11 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { useSelector, useDispatch } from 'react-redux'
 import { toggleCloseSideBar } from '../features/toggle/toggleSlice'
+import { clearCart } from '../features/cart/cartSlice'
+import { logoutUser } from '../features/user/userSlice'
 
 const CartButtons = () => {
-  const { total_items, clearCart } = useSelector((store) => store.cart)
+  const { total_items } = useSelector((store) => store.cart)
   const { user } = useSelector((store) => store.user)
   const dispatch = useDispatch()
 
@@ -27,20 +29,14 @@ const CartButtons = () => {
         <button
           type="button"
           className="auth-btn"
-          onClick={() => {
-            clearCart()
-          }}
+          onClick={() => dispatch(logoutUser())}
         >
           Logout <FaUserMinus />
         </button>
       ) : (
-        <button
-          type="button"
-          className="auth-btn"
-          onClick={() => console.log('login')}
-        >
+        <Link type="button" className="auth-btn" to="/register">
           Login <FaUserPlus />
-        </button>
+        </Link>
       )}
     </Wrapper>
   )

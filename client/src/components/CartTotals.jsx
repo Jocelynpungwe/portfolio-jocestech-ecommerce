@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 const CartTotals = () => {
   const { total_amount, shipping_fee } = useSelector((store) => store.cart)
+  const { user } = useSelector((store) => store.user)
   return (
     <Wrapper>
       <div>
@@ -20,9 +21,15 @@ const CartTotals = () => {
             order total :<span>{formatPrice(total_amount + shipping_fee)}</span>
           </h4>
         </article>
-        <Link to="/checkout" className="btn">
-          proceed to checkout
-        </Link>
+        {user ? (
+          <Link to="/checkout" className="btn">
+            proceed to checkout
+          </Link>
+        ) : (
+          <Link to="/register" className="btn">
+            login
+          </Link>
+        )}
       </div>
     </Wrapper>
   )

@@ -14,8 +14,8 @@ const { getSingleProductReviews } = require('../controllers/reviewController')
 const authenticationMiddleware = require('../middleware/authentication')
 const authorizeMiddleware = require('../middleware/authorize')
 
-router.get('/', authenticationMiddleware, getAllProducts)
-router.get('/:id', authenticationMiddleware, getSingleProduct)
+router.get('/', getAllProducts)
+router.get('/:id', getSingleProduct)
 router.post(
   '/',
   authenticationMiddleware,

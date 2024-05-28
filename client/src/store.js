@@ -4,6 +4,8 @@ import userSlice from './features/user/userSlice'
 import productSlice from './features/product/productSlice'
 import filterSlice from './features/filters/filterSlice'
 import cartSlice from './features/cart/cartSlice'
+import orderSlice from './features/order/orderSlice'
+
 const store = configureStore({
   reducer: {
     toggle: toggleSlice,
@@ -11,6 +13,7 @@ const store = configureStore({
     products: productSlice,
     filter: filterSlice,
     cart: cartSlice,
+    order: orderSlice,
   },
 })
 

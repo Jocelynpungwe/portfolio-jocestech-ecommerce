@@ -4,10 +4,7 @@ const Product = require('../models/Product')
 const { checkPermissions } = require('../utils')
 const { BadRequestError, NotFoundError } = require('../errors')
 
-const fakeStripeAPI = async ({ amount, currency }) => {
-  const client_secret = 'someRandomValue'
-  return { client_secret, amount }
-}
+const stripe = require('stripe')(process.env.REACT_APP_STRIPE_SECRET_KEY)
 
 const createOrder = async (req, res) => {
   const { items: cartItems, tax, shippingFee } = req.body
@@ -24,7 +21,9 @@ const createOrder = async (req, res) => {
   let subtotal = 0
 
   for (const item of cartItems) {
-    const dbProduct = await Product.findOne({ _id: item.product })
+    const productId = item.id.split('#')
+
+    const dbProduct = await Product.findOne({ _id: productId[0] })
     if (!dbProduct) {
       throw new NotFoundError(`No product with id : ${item.product}`)
     }
@@ -35,6 +34,7 @@ const createOrder = async (req, res) => {
       name,
       price,
       image,
+      color: productId[1],
       product: _id,
     }
     // add item to order
@@ -45,9 +45,9 @@ const createOrder = async (req, res) => {
 
   const total = tax + shippingFee + subtotal
 
-  const paymentIntent = await fakeStripeAPI({
+  const paymentIntent = await stripe.paymentIntents.create({
     amount: total,
-    currency: 'usd',
+    currency: 'cad',
   })
 
   const order = await Order.create({
@@ -89,16 +89,22 @@ const getCurrentUserOrders = async (req, res) => {
 
 const updateOrder = async (req, res) => {
   const { id: orderId } = req.params
-  const { paymentIntentId } = req.body
+  const { paymentIntentId, address } = req.body
+
+  console.log(orderId)
+  console.log('body:', req.body)
 
   const order = await Order.findOne({ _id: orderId })
   if (!order) {
     throw new NotFoundError(`No order with id : ${orderId}`)
   }
 
+  console.log(address)
+
   checkPermissions(req.user, order.user)
   order.paymentIntentId = paymentIntentId
   order.status = 'paid'
+  order.shippingAddress = address
   await order.save()
   res.status(StatusCodes.OK).json({ order })
 }

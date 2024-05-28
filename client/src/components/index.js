@@ -23,6 +23,7 @@ import Stars from './Stars'
 import AmountButtons from './AmountButtons'
 import CartContent from './CartContent'
 import StripeCheckout from './StripeCheckout'
+import CheckoutForm from './CheckoutForm'
 
 export {
   Navbar,
@@ -50,4 +51,5 @@ export {
   AmountButtons,
   CartContent,
   StripeCheckout,
+  CheckoutForm,
 }
