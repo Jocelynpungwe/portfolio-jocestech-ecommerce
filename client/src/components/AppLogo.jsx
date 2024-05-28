@@ -10,9 +10,9 @@ const AppLogo = () => {
 
 const Wrapper = styled.h3`
   margin-bottom: 0;
-  color: var(--clr-grey-1);
+  color: var(--actual-white);
   span {
-    color: var(--clr-primary-5);
+    color: var(--primary-chocolate);
   }
 `
 

@@ -5,47 +5,48 @@ import { FaBars } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import { links } from '../utils/constants'
 import CartButtons from './CartButtons'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { toggleSideBar } from '../features/toggle/toggleSlice'
 
 const Navbar = () => {
   const dispatch = useDispatch()
-
-  const [myUser, setMyUser] = useState(false)
+  const { user } = useSelector((store) => store.user)
 
   return (
-    <NavContainer>
-      <div className="nav-center">
-        <div className="nav-header">
-          <Link to="/">
-            <AppLogo />
-          </Link>
-          <button
-            type="button"
-            className="nav-toggle"
-            onClick={() => dispatch(toggleSideBar())}
-          >
-            <FaBars />
-          </button>
-        </div>
-        <ul className="nav-links">
-          {links.map((link) => {
-            const { id, text, url } = link
-            return (
-              <li key={id}>
-                <Link to={url}>{text}</Link>
+    <header className="background-header">
+      <NavContainer>
+        <div className="nav-center">
+          <div className="nav-header">
+            <Link to="/">
+              <AppLogo />
+            </Link>
+            <button
+              type="button"
+              className="nav-toggle"
+              onClick={() => dispatch(toggleSideBar())}
+            >
+              <FaBars />
+            </button>
+          </div>
+          <ul className="nav-links">
+            {links.map((link) => {
+              const { id, text, url } = link
+              return (
+                <li key={id}>
+                  <Link to={url}>{text}</Link>
+                </li>
+              )
+            })}
+            {user && (
+              <li>
+                <Link to="/checkout">checkout</Link>
               </li>
-            )
-          })}
-          {myUser && (
-            <li>
-              <Link to="/checkout">checkout</Link>
-            </li>
-          )}
-        </ul>
-        <CartButtons />
-      </div>
-    </NavContainer>
+            )}
+          </ul>
+          <CartButtons />
+        </div>
+      </NavContainer>
+    </header>
   )
 }
 
@@ -54,9 +55,10 @@ const NavContainer = styled.nav`
   display: flex;
   align-items: center;
   justify-content: center;
+  border-bottom: 1px solid rgb(46, 45, 45);
 
   .nav-center {
-    width: 90vw;
+    width: 80vw;
     margin: 0 auto;
     max-width: var(--max-width);
   }
@@ -72,7 +74,8 @@ const NavContainer = styled.nav`
   .nav-toggle {
     background: transparent;
     border: transparent;
-    color: var(--clr-primary-5);
+    /* color: var(--clr-primary-5); */
+    color: white;
     cursor: pointer;
     svg {
       font-size: 2rem;
@@ -84,13 +87,14 @@ const NavContainer = styled.nav`
   .cart-btn-wrapper {
     display: none;
   }
-  @media (min-width: 992px) {
+  @media (min-width: 1020px) {
     .nav-toggle {
       display: none;
     }
     .nav-center {
       display: grid;
       grid-template-columns: auto 1fr auto;
+      grid-column-gap: 100px;
       align-items: center;
     }
     .nav-links {
@@ -100,13 +104,14 @@ const NavContainer = styled.nav`
         margin: 0 0.5rem;
       }
       a {
-        color: var(--clr-grey-3);
+        /* color: var(--clr-grey-3); */
+        color: #fff;
         font-size: 1rem;
         text-transform: capitalize;
         letter-spacing: var(--spacing);
         padding: 0.5rem;
         &:hover {
-          border-bottom: 2px solid var(--clr-primary-7);
+          border-bottom: 2px solid var(--primary-chocolate);
         }
       }
     }

@@ -40,11 +40,11 @@ const Services = () => {
 const Wrapper = styled.section`
   h3,
   h4 {
-    color: var(--clr-primary-1);
+    color: var(--actual-white);
   }
   padding: 5rem 0;
 
-  background: var(--clr-primary-10);
+  background: var(--actual-black);
 
   .header h3 {
     margin-bottom: 2rem;
@@ -52,7 +52,8 @@ const Wrapper = styled.section`
   p {
     margin-bottom: 0;
     line-height: 1.8;
-    color: var(--clr-primary-3);
+    color: var(--actual-white);
+    opacity: 0.75;
   }
   .services-center {
     margin-top: 4rem;
@@ -60,12 +61,13 @@ const Wrapper = styled.section`
     gap: 2.5rem;
   }
   .service {
-    background: var(--clr-primary-7);
+    background: rgb(46, 45, 45);
     text-align: center;
     padding: 2.5rem 2rem;
     border-radius: var(--radius);
     p {
-      color: var(--clr-primary-2);
+      color: var(--actual-white);
+      opacity: 0.75;
     }
   }
   span {
@@ -82,21 +84,13 @@ const Wrapper = styled.section`
       font-size: 2rem;
     }
   }
-  @media (min-width: 992px) {
+  @media (min-width: 1020px) {
     .header {
       display: grid;
       grid-template-columns: 1fr 1fr;
     }
-  }
-  @media (min-width: 576px) {
     .services-center {
-      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-    }
-  }
-  @media (min-width: 1280px) {
-    padding: 0;
-    .section-center {
-      transform: translateY(5rem);
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }
   }
 `

@@ -1,5 +1,4 @@
 import { useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import Error from './Error'
 import Loading from './Loading'
@@ -14,7 +13,6 @@ const FeaturedProduct = () => {
     products_error: error,
     featured_products: featured,
   } = useSelector((store) => store.products)
-  const { user } = useSelector((store) => store.user)
 
   const dispatch = useDispatch()
 
@@ -31,18 +29,11 @@ const FeaturedProduct = () => {
 
   return (
     <Wrapper className="section">
-      <div className="title">
-        <h2>featured products</h2>
-        <div className="underline"></div>
-      </div>
       <div className="section-center featured">
         {featured.slice(0, 3).map((product) => {
           return <Product key={product.id} {...product} />
         })}
       </div>
-      <Link to="/products" className="btn">
-        all products
-      </Link>
     </Wrapper>
   )
 }
@@ -54,7 +45,7 @@ const Wrapper = styled.section`
     display: grid;
     gap: 2.5rem;
     img {
-      height: 225px;
+      height: 165px;
     }
   }
   .btn {
@@ -63,9 +54,9 @@ const Wrapper = styled.section`
     margin: 0 auto;
     text-align: center;
   }
-  @media (min-width: 576px) {
+  @media (min-width: 768px) {
     .featured {
-      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     }
   }
 `

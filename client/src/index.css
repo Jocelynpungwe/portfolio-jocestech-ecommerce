@@ -5,6 +5,16 @@ Variables
 */
 
 :root {
+  /* COLORS */
+  --primary-chocolate: #d87d4a;
+  --secondy-chocolate: #fbaf85;
+
+  --primary-blackish: #101010;
+  --actual-black: #000000;
+
+  --primary-gray: #f1f1f1;
+  --seondary-gray: #fafafa;
+  --actual-white: #fff;
   /* dark shades of primary color*/
   --clr-primary-1: #1e1b4b;
   --clr-primary-2: #312e81;
@@ -79,14 +89,14 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: 'Array', sans-serif;
+  font-family: Manrope, sans-serif;
   letter-spacing: var(--spacing);
   text-transform: capitalize;
   line-height: 1.25;
   margin-bottom: 0.75rem;
 }
 h1 {
-  font-size: 2.5rem;
+  font-size: 3.5rem;
 }
 h2 {
   font-size: 2rem;
@@ -108,6 +118,66 @@ p {
 button {
   font-family: inherit;
 }
+
+/* .background-hero, */
+.background-header {
+  background: #0e0e0e;
+}
+
+.background-hero {
+  background-image: url('./assets/home/tablet/image-header.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding-bottom: 80px;
+}
+
+.homepage-product-zx7-speaker {
+  background-image: url('./assets/home/mobile/image-speaker-zx7.jpg');
+}
+.special-product-yx1-earphone-background {
+  background-image: url('./assets/home/mobile/image-earphones-yx1.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 200px;
+  flex-shrink: 0;
+}
+.audio-product-background {
+  background-image: url('./assets/home/mobile/image-best-gear.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 250px;
+}
+
+@media (min-width: 768px) {
+  .homepage-product-zx7-speaker {
+    background-image: url('./assets/home/tablet/image-speaker-zx7.jpg');
+  }
+  .special-product-yx1-earphone-background {
+    background-image: url('./assets/home/tablet/image-earphones-yx1.jpg');
+  }
+  .audio-product-background {
+    background-image: url('./assets/home/tablet/image-best-gear.jpg');
+  }
+}
+@media (min-width: 1020px) {
+  .background-hero {
+    background-image: url('./assets/home/desktop/image-hero.jpg');
+  }
+  .homepage-product-zx7-speaker {
+    background-image: url('./assets/home/desktop/image-speaker-zx7.jpg');
+  }
+  .special-product-yx1-earphone-background {
+    background-image: url('./assets/home/desktop/image-earphones-yx1.jpg');
+  }
+  .audio-product-background {
+    background-image: url('./assets/home/desktop/image-best-gear.jpg');
+    height: 400px;
+  }
+}
+
 @media screen and (min-width: 800px) {
   h1 {
     font-size: 3rem;
@@ -134,34 +204,6 @@ button {
     line-height: 1;
   }
 }
-
-small,
-.text-small {
-  font-size: var(--small-text);
-}
-
-a {
-  text-decoration: none;
-  letter-spacing: var(--letterSpacing);
-}
-a,
-button {
-  line-height: 1.15;
-}
-button:disabled {
-  cursor: not-allowed;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.img {
-  width: 100%;
-  display: block;
-  object-fit: cover;
-}
-
 /*  global classes */
 
 /* section */
@@ -169,14 +211,14 @@ ul {
   padding: 5rem 0;
 }
 .section-center {
-  width: 90vw;
+  width: 75vw;
   margin: 0 auto;
   max-width: var(--max-width);
 }
 
 @media screen and (min-width: 992px) {
   .section-center {
-    width: 95vw;
+    width: 80vw;
   }
 }
 .text-center {
@@ -201,8 +243,6 @@ ul {
 
 .btn {
   text-transform: uppercase;
-  background: var(--clr-primary-5);
-  color: var(--clr-primary-10);
   padding: 0.375rem 0.75rem;
   letter-spacing: var(--spacing);
   display: inline-block;
@@ -211,13 +251,47 @@ ul {
   font-size: 0.875rem;
   cursor: pointer;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-  border-radius: var(--radius);
+  /* border-radius: var(--radius); */
   border-color: transparent;
+  color: var(--actual-white);
+  background: var(--primary-chocolate);
 }
 .btn:hover {
-  color: var(--clr-primary-1);
-  background: var(--clr-primary-7);
+  background: var(--secondy-chocolate);
 }
+
+.primary-btn {
+  padding: 1rem 2rem;
+  color: var(--actual-white);
+  background: var(--primary-chocolate);
+}
+
+.primary-btn:hover {
+  background: var(--secondy-chocolate);
+}
+
+.secondary-btn {
+  padding: 1rem 2rem;
+  color: var(--actual-black);
+  background: transparent;
+  border: 1px solid #000;
+}
+.secondary-btn:hover {
+  color: var(--actual-white);
+  background: var(--actual-black);
+}
+
+.third-btn {
+  padding: 1rem 2rem;
+  color: var(--actual-white);
+  background: var(--actual-black);
+}
+
+.third-btn:hover {
+  color: var(--actual-white);
+  background: var(--primary-blackish);
+}
+
 .title {
   text-align: center;
 }
@@ -225,7 +299,7 @@ ul {
   width: 6rem;
   height: 0.25rem;
   background: #49a6e9;
-  background: var(--clr-primary-5);
+  background: var(--primary-chocolate);
   margin-left: auto;
   margin-right: auto;
 }

@@ -5,54 +5,115 @@ import heroBcg from '../assets/hero-bcg.svg'
 
 const Hero = () => {
   return (
-    <Wrapper className="section-center">
-      <article className="content">
-        <h1>
-          We <strong>Jocest</strong> <br />
-          Love our tech
-        </h1>
-        <p>
-          Are you ready to elevate your tech game? Explore a world of
-          possibilities with our curated collection of the latest smartphones,
-          laptops, and more. Welcome to your one-stop destination for all things
-          tech.
-        </p>
-        <Link to="/products" className="btn hero-btn">
-          shop now
-        </Link>
-      </article>
-      <article className="img-container">
-        <img src={heroBcg} alt="phone drawing" className="main-img" />
-      </article>
-    </Wrapper>
+    <section className="background-hero">
+      <Wrapper className="section-center">
+        <article className="content">
+          <div className="container">
+            <p className="hero-product">NEW PRODUCT</p>
+            <h1>XX99 Mark II Headphones</h1>
+            <p className="hero-description">
+              Experience natural, lifelike audio and exceptional build quality
+              made for the passionate music enthusiast.
+            </p>
+            <Link to="/products" className="btn primary-btn">
+              see product
+            </Link>
+          </div>
+        </article>
+        <article className="img-container">
+          {/* <img src={heroBcg} alt="phone drawing" className="main-img" /> */}
+        </article>
+      </Wrapper>
+    </section>
   )
 }
 
 const Wrapper = styled.section`
-  min-height: 60vh;
+  height: calc(100vh - 5rem);
   display: grid;
   place-items: center;
   .img-container {
     display: none;
   }
-
-  p {
-    line-height: 2;
-    max-width: 45em;
-    margin-bottom: 2rem;
-    color: var(--clr-grey-5);
-    font-size: 1rem;
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 90px;
   }
-  @media (min-width: 992px) {
-    height: calc(100vh - 5rem);
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
+
+  h1 {
+    color: #fff;
+    text-align: center;
+    font-family: Manrope;
+    /* font-size: 45px; */
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 35px; /* 103.571% */
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .hero-product {
+    color: #fff;
+    text-align: center;
+    font-family: Manrope;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 10px;
+    text-transform: uppercase;
+    opacity: 0.4964;
+  }
+
+  .hero-description {
+    color: #fff;
+    text-align: center;
+    font-family: Manrope;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 25px; /* 166.667% */
+    opacity: 0.75;
+    width: 328px;
+  }
+
+  @media (min-width: 768px) {
     h1 {
-      margin-bottom: 2rem;
+      font-size: 56px;
+      line-height: 58px;
+      width: 490px;
     }
-    p {
-      font-size: 1.25rem;
+    .hero-description {
+      width: 349px;
     }
+  }
+
+  @media (min-width: 1020px) {
+    /* height: calc(100vh - 5rem); */
+    grid-template-columns: 1fr 1fr;
+    gap: 8rem;
+
+    .container {
+      justify-content: center;
+      align-items: start;
+    }
+
+    h1 {
+      text-align: left;
+    }
+
+    .hero-product {
+      text-align: left;
+    }
+
+    .hero-description {
+      text-align: left;
+    }
+
     .hero-btn {
       padding: 0.75rem 1.5rem;
       font-size: 1rem;

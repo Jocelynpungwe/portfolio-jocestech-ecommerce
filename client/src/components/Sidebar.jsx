@@ -11,10 +11,9 @@ import {
   toggleCloseSideBar,
 } from '../features/toggle/toggleSlice'
 const Sidebar = () => {
+  const { user } = useSelector((store) => store.user)
   const { isSideBarOpen } = useSelector((store) => store.toggle)
   const dispatch = useDispatch()
-
-  const [myUser, setMyUser] = useState(false)
 
   return (
     <SidebarContainer>
@@ -40,7 +39,7 @@ const Sidebar = () => {
               </li>
             )
           })}
-          {myUser && (
+          {user && (
             <li>
               <Link
                 to="/checkout"

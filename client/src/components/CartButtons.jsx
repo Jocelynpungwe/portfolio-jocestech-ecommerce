@@ -49,13 +49,19 @@ const Wrapper = styled.div`
   width: 225px;
 
   .cart-btn {
-    color: var(--clr-grey-1);
+    /* color: var(--clr-grey-1); */
+    color: white;
     font-size: 1.5rem;
     letter-spacing: var(--spacing);
-    color: var(--clr-grey-1);
+    /* color: var(--clr-grey-1); */
     display: flex;
 
     align-items: center;
+  }
+  @media (max-width: 1020px) {
+    .cart-btn {
+      color: black;
+    }
   }
   .cart-container {
     display: flex;
@@ -70,7 +76,8 @@ const Wrapper = styled.div`
     position: absolute;
     top: -10px;
     right: -16px;
-    background: var(--clr-primary-5);
+    /* background: var(--clr-primary-5); */
+    background: #d87d4a;
     width: 16px;
     height: 16px;
     display: flex;
@@ -88,7 +95,7 @@ const Wrapper = styled.div`
     border-color: transparent;
     font-size: 1.5rem;
     cursor: pointer;
-    color: var(--clr-grey-1);
+    color: var(--clr-white);
     letter-spacing: var(--spacing);
     svg {
       margin-left: 5px;

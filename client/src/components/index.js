@@ -24,6 +24,11 @@ import AmountButtons from './AmountButtons'
 import CartContent from './CartContent'
 import StripeCheckout from './StripeCheckout'
 import CheckoutForm from './CheckoutForm'
+import SpecialProductSection from './SpecialProductSection'
+import SpecialProductOne from './SpecialProductOne'
+import SpecialProductTwo from './SpecialProductTwo'
+import SpecialProductThree from './SpecialProductThree'
+import SmallWebDescription from './SmallWebDescription'
 
 export {
   Navbar,
@@ -52,4 +57,9 @@ export {
   CartContent,
   StripeCheckout,
   CheckoutForm,
+  SpecialProductSection,
+  SpecialProductOne,
+  SpecialProductTwo,
+  SpecialProductThree,
+  SmallWebDescription,
 }
