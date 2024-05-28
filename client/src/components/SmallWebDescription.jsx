@@ -25,7 +25,7 @@ const SmallWebDescription = () => {
             the best place to buy your portable audio equipment.
           </p>
         </div>
-        <Contact />
+        {/* <Contact /> */}
       </div>
     </Wrapper>
   )

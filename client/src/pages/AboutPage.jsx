@@ -1,14 +1,18 @@
-import React from 'react'
+import { useEffect } from 'react'
 import styled from 'styled-components'
 import { PageHero } from '../components'
+import aboutImg from '../assets/images/about-image.jpg'
 
 import aboutBcg from '../assets/about-bcg.svg'
 const AboutPage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   return (
     <main>
       <PageHero title="about" />
       <Wrapper className="page section section-center">
-        <img src={aboutBcg} alt="desktop, laptop and phone drawing" />
+        <img src={aboutImg} alt="desktop, laptop and phone drawing" />
         <article>
           <div className="title">
             <h2>About JocesTech</h2>
