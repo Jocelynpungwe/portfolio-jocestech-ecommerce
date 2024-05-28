@@ -41,6 +41,6 @@ router.post(
   uploadImage
 )
 
-router.get('/:id', getSingleProductReviews)
+router.get('/review/:id', getSingleProductReviews)
 
 module.exports = router

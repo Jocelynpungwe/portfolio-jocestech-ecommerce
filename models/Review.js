@@ -36,28 +36,26 @@ ReviewSchema.index({ product: 1, user: 1 }, { unique: true })
 
 ReviewSchema.statics.groupRating = async function (productId) {
   const result = await this.aggregate([
-    [
-      {
-        $match: {
-          product: productId,
+    {
+      $match: {
+        product: productId,
+      },
+    },
+    {
+      $group: {
+        _id: '$rating',
+        groupRating: {
+          $sum: 1,
         },
       },
-      {
-        $group: {
-          _id: '$rating',
-          groupRating: {
-            $sum: 1,
-          },
-        },
-      },
-    ],
+    },
   ])
 
   try {
     await this.model('Product').findOneAndUpdate(
       { _id: productId },
       {
-        groupRating: result[0]?.averageRating || 0,
+        groupRating: result,
       }
     )
   } catch (error) {

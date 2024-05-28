@@ -9,6 +9,10 @@ const initialState = {
   single_product_loading: false,
   single_product_error: false,
   single_product: [],
+  single_product_review: [],
+  single_product_review_loading: false,
+  single_product_review_error: false,
+  review_page: 0,
 }
 
 export const getAllProducts = createAsyncThunk(
@@ -28,6 +32,21 @@ export const getSingleProduct = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       const { data } = await customeFetch.get(`/products/${id}`)
+      return data
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data.msg)
+    }
+  }
+)
+
+export const getSingleProductReview = createAsyncThunk(
+  'product/getSingleProductReview',
+  async (id, thunkAPI) => {
+    try {
+      const page = 1
+      const { data } = await customeFetch.get(
+        `/products/review/${id}?page=${page}`
+      )
       return data
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.msg)
@@ -68,10 +87,26 @@ const productSlice = createSlice({
         state.single_product_error = false
         const { product } = payload
         state.single_product = product
+        console.log(product)
       })
       .addCase(getSingleProduct.rejected, (state, { payload }) => {
         state.single_product_loading = false
         state.single_product_error = true
+      })
+      .addCase(getSingleProductReview.pending, (state) => {
+        state.single_product_review_loading = true
+        state.single_product_review_error = false
+      })
+      .addCase(getSingleProductReview.fulfilled, (state, { payload }) => {
+        const { reviews } = payload
+        state.single_product_review_loading = false
+        state.single_product_review_error = false
+        console.log(reviews)
+        state.single_product_review = reviews
+      })
+      .addCase(getSingleProductReview.rejected, (state, { payload }) => {
+        state.single_product_review_loading = false
+        state.single_product_review_error = true
       })
   },
 })

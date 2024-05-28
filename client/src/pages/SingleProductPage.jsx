@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { getSingleProduct } from '../features/product/productSlice'
+import {
+  getSingleProduct,
+  getSingleProductReview,
+} from '../features/product/productSlice'
 import { useParams } from 'react-router-dom'
 import { formatPrice } from '../utils/helpers'
 import {
@@ -26,10 +29,14 @@ const SingleProductPage = () => {
     single_product_loading: loading,
     single_product_error: error,
     single_product: product,
+    single_product_review: singleProductReview,
+    single_product_review_loading: singleReviewLoading,
+    single_product_review_error: singleReviewError,
   } = useSelector((store) => store.products)
 
   useEffect(() => {
     dispatch(getSingleProduct(id))
+    dispatch(getSingleProductReview(id))
   }, [id])
 
   useEffect(() => {
@@ -57,6 +64,8 @@ const SingleProductPage = () => {
     id: sku,
     company,
     image,
+    features,
+    box,
     freeShipping,
     groupRating,
     numOfReviews,
@@ -92,8 +101,7 @@ const SingleProductPage = () => {
             {inventory > 0 && <AddToCart product={product} />}
           </section>
         </div>
-        <Reviews reviews={reviews} />
-        {/* <div className="feature-and-inbox-container">
+        <div className="feature-and-inbox-container">
           <div>
             <h6>FEATURES</h6>
             <p className="feature-desc">{features}</p>
@@ -109,9 +117,20 @@ const SingleProductPage = () => {
                   </p>
                 )
               })}
-          </div> */}
-        {/* </div> */}
-        <ProductBox />
+          </div>
+        </div>
+        {singleReviewLoading ? (
+          <Loading />
+        ) : singleReviewError ? (
+          <Error />
+        ) : (
+          <Reviews
+            reviews={singleProductReview}
+            groupRating={groupRating}
+            averageRating={averageRating}
+          />
+        )}
+        <ProductBox image={image} />
         <FeaturedProducts />
         <SmallWebDescription />
       </div>

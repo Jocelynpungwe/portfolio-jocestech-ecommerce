@@ -7,6 +7,7 @@ const {
   getSingleReview,
   updateReview,
   deleteReview,
+  getSingleProductReviews,
 } = require('../controllers/reviewController')
 
 const authenticationMiddleware = require('../middleware/authentication')

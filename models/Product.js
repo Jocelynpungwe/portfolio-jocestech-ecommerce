@@ -60,9 +60,20 @@ const ProductSchema = mongoose.Schema(
       required: true,
       default: 15,
     },
+    features: {
+      type: String,
+      default: 'Features of this product will be updated as soon as possible',
+      required: [true, 'Please provide product features'],
+      maxlength: [1000, 'features can not be more than 1000 characters'],
+    },
+    box: {
+      type: [String],
+      default: ['1x User Manual', '1x Travel Bag'],
+      required: true,
+    },
     groupRating: {
-      type: Number,
-      default: 0,
+      type: mongoose.Schema.Types.Mixed,
+      default: [],
     },
     averageRating: {
       type: Number,
