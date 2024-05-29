@@ -45,6 +45,10 @@ const Filters = () => {
       value = e.target.checked
     }
 
+    if (name === 'categoryOption') {
+      name = 'category'
+    }
+
     dispatch(updateFilters({ name, value }))
   }
 
@@ -52,123 +56,145 @@ const Filters = () => {
     <Wrapper>
       <div className="content">
         <form onSubmit={(e) => e.preventDefault()}>
-          {/* search input */}
-          <div className="form-control">
-            <input
-              type="text"
-              name="text"
-              value={text}
-              placeholder="search"
-              onChange={filtersUpdate}
-              className="search-input"
-            />
-          </div>
-          {/* end of search input */}
-          {/* category */}
-          <div className="form-control">
-            <h5>category</h5>
-            <div>
-              {categories.map((c, index) => {
-                return (
-                  <button
-                    key={index}
-                    onClick={filtersUpdate}
-                    type="button"
-                    name="category"
-                    className={`${
-                      category === c.toLowerCase() ? 'active' : null
-                    }`}
-                  >
-                    {c}
-                  </button>
-                )
-              })}
+          <section>
+            {/* search input */}
+            <div className="form-control">
+              <input
+                type="text"
+                name="text"
+                value={text}
+                placeholder="search"
+                onChange={filtersUpdate}
+                className="search-input"
+              />
             </div>
-          </div>
-          {/* end of category */}
-          {/* company */}
-          <div className="form-control">
-            <h5>company</h5>
-            <select
-              name="company"
-              value={company}
-              onChange={filtersUpdate}
-              className="company"
-            >
-              {companies.map((c, index) => {
-                return (
-                  <option key={index} value={c}>
-                    {c}
-                  </option>
-                )
-              })}
-            </select>
-          </div>
-          {/* end of company */}
-          {/* colors */}
-          <div className="form-control">
-            <h5>colors</h5>
-            <div className="colors">
-              {colors.map((c, index) => {
-                if (c === 'all') {
+            {/* end of search input */}
+            {/* category */}
+            <div className="form-control">
+              <h5>category</h5>
+              <div className="category-big-screen">
+                {categories.map((c, index) => {
+                  return (
+                    <button
+                      key={index}
+                      onClick={filtersUpdate}
+                      type="button"
+                      name="category"
+                      className={`${
+                        category === c.toLowerCase() ? 'active' : null
+                      }`}
+                    >
+                      {c}
+                    </button>
+                  )
+                })}
+              </div>
+              <div className="category-small-screen ">
+                <select
+                  name="categoryOption"
+                  value={category}
+                  onChange={filtersUpdate}
+                  className="company"
+                >
+                  {categories.map((c, index) => {
+                    return (
+                      <option key={index} value={c}>
+                        {c}
+                      </option>
+                    )
+                  })}
+                </select>
+              </div>
+            </div>
+            {/* end of category */}
+
+            {/* company */}
+            <div className="form-control">
+              <h5>company</h5>
+              <select
+                name="company"
+                value={company}
+                onChange={filtersUpdate}
+                className="company"
+              >
+                {companies.map((c, index) => {
+                  return (
+                    <option key={index} value={c}>
+                      {c}
+                    </option>
+                  )
+                })}
+              </select>
+            </div>
+            {/* end of company */}
+          </section>
+          <section>
+            {/* colors */}
+            <div className="form-control">
+              <h5>colors</h5>
+              <div className="colors">
+                {colors.map((c, index) => {
+                  if (c === 'all') {
+                    return (
+                      <button
+                        key={index}
+                        name="color"
+                        onClick={filtersUpdate}
+                        data-color="all"
+                        className={`${
+                          color === 'all' ? 'all-btn active' : 'all-btn'
+                        }`}
+                      >
+                        all
+                      </button>
+                    )
+                  }
                   return (
                     <button
                       key={index}
                       name="color"
-                      onClick={filtersUpdate}
-                      data-color="all"
+                      style={{ background: c }}
                       className={`${
-                        color === 'all' ? 'all-btn active' : 'all-btn'
+                        color === c ? 'color-btn active' : 'color-btn'
                       }`}
+                      data-color={c}
+                      onClick={filtersUpdate}
                     >
-                      all
+                      {color === c ? <FaCheck /> : null}
                     </button>
                   )
-                }
-                return (
-                  <button
-                    key={index}
-                    name="color"
-                    style={{ background: c }}
-                    className={`${
-                      color === c ? 'color-btn active' : 'color-btn'
-                    }`}
-                    data-color={c}
-                    onClick={filtersUpdate}
-                  >
-                    {color === c ? <FaCheck /> : null}
-                  </button>
-                )
-              })}
+                })}
+              </div>
             </div>
-          </div>
-          {/* end of colors */}
-          {/* price */}
-          <div className="form-control">
-            <h5>price</h5>
-            <p className="price">{formatPrice(price)}</p>
-            <input
-              type="range"
-              name="price"
-              onChange={filtersUpdate}
-              min={min_price}
-              max={max_price}
-              value={price}
-            />
-          </div>
-          {/* end of price */}
-          {/* shipping */}
-          <div className="form-control shipping">
-            <label htmlFor="shipping">free shipping</label>
-            <input
-              type="checkbox"
-              name="shipping"
-              id="shipping"
-              checked={shipping}
-              onChange={filtersUpdate}
-            />
-          </div>
-          {/* end of  shipping */}
+            {/* end of colors */}
+
+            {/* price */}
+            <div className="form-control">
+              <h5>price</h5>
+              <p className="price">{formatPrice(price)}</p>
+              <input
+                type="range"
+                name="price"
+                onChange={filtersUpdate}
+                min={min_price}
+                max={max_price}
+                value={price}
+              />
+            </div>
+            {/* end of price */}
+            {/* shipping */}
+            <div className="form-control shipping">
+              <label htmlFor="shipping">free shipping</label>
+              <input
+                type="checkbox"
+                name="shipping"
+                id="shipping"
+                checked={shipping}
+                onChange={filtersUpdate}
+              />
+            </div>
+            {/* end of  shipping */}
+          </section>
         </form>
         <button
           type="button"
@@ -183,6 +209,11 @@ const Filters = () => {
 }
 
 const Wrapper = styled.section`
+  form {
+    display: flex;
+    justify-content: space-between;
+  }
+
   .form-control {
     margin-bottom: 1.25rem;
     h5 {
@@ -220,6 +251,13 @@ const Wrapper = styled.section`
     border-radius: var(--radius);
     border-color: transparent;
     padding: 0.25rem;
+  }
+
+  .category-big-screen {
+    display: none;
+  }
+  .category-small-screen {
+    display: block;
   }
   .colors {
     display: flex;
@@ -277,6 +315,16 @@ const Wrapper = styled.section`
     .content {
       position: sticky;
       top: 1rem;
+    }
+    .category-big-screen {
+      display: block;
+    }
+    .category-small-screen {
+      display: none;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
     }
   }
 `

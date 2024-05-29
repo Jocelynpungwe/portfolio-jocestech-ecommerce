@@ -8,7 +8,9 @@ import { countCartTotal } from '../features/cart/cartSlice'
 const CartPage = () => {
   const { cart } = useSelector((store) => store.cart)
   const dispatch = useDispatch()
-
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   useEffect(() => {
     dispatch(countCartTotal())
   }, [cart])

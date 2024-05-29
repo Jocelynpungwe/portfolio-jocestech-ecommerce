@@ -16,7 +16,7 @@ const Hero = () => {
               made for the passionate music enthusiast.
             </p>
             <Link to="/products" className="btn primary-btn">
-              see product
+              see products
             </Link>
           </div>
         </article>

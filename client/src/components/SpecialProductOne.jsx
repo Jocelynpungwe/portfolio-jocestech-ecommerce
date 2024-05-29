@@ -1,27 +1,8 @@
-import { useEffect } from 'react'
 import styled from 'styled-components'
 import specialImgeOne from '../assets/images/speaker/image-removebg-preview-38.png'
 import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import Error from './Error'
-import Loading from './Loading'
 
-const SpecialProductOne = () => {
-  const {
-    products_loading: loading,
-    products_error: error,
-    products,
-  } = useSelector((store) => store.products)
-
-  if (loading) {
-    return <Loading />
-  }
-  if (error) {
-    return <Error />
-  }
-
-  console.log(products)
-
+const SpecialProductOne = ({ products }) => {
   return (
     <Wrapper className="section-center">
       <div className="homepage-product-zx9-speaker">
@@ -38,23 +19,22 @@ const SpecialProductOne = () => {
           <h2>
             ZX9 <span className="title-span">SPEAKER</span>
           </h2>
-          {products.length > 0 &&
-            products
-              .filter((product) => product.name === 'iPhone X')
-              .map((product) => {
-                return (
-                  <>
-                    <p>{product.description}</p>
-                    <Link
-                      className="btn third-btn"
-                      to={`products/${product.id}`}
-                      key={product.name}
-                    >
-                      see product
-                    </Link>
-                  </>
-                )
-              })}
+          {products
+            .filter((product) => product.name === 'ZX9 SPEAKER')
+            .map((product) => {
+              return (
+                <>
+                  <p>{product.description}</p>
+                  <Link
+                    className="btn third-btn"
+                    to={`products/${product._id}`}
+                    key={product.name}
+                  >
+                    see product
+                  </Link>
+                </>
+              )
+            })}
 
           {/* <p>
             Upgrade to premium speakers that are phenomenally built to deliver
@@ -145,7 +125,8 @@ const Wrapper = styled.section`
     font-weight: 500;
     line-height: 25px; /* 166.667% */
     opacity: 0.75;
-    width: 280px;
+    max-width: 280px;
+
     margin: 0 auto;
     margin-bottom: 25px;
   }
@@ -161,13 +142,14 @@ const Wrapper = styled.section`
   }
   @media (min-width: 1020px) {
     display: grid;
-    place-items: center;
+    grid-template-columns: 1fr 1fr;
+
     text-align: left;
 
     h2 {
       color: #fff;
       font-family: Manrope;
-      font-size: 56px;
+      font-size: 40px;
       font-style: normal;
       font-weight: 700;
       line-height: 58px; /* 103.571% */
@@ -232,8 +214,20 @@ const Wrapper = styled.section`
       margin-left: -150px;
     }
     .project-container {
-      margin-left: -100px;
+      margin-left: -180px;
       margin-top: 50px;
+    }
+  }
+
+  @media (min-width: 1220px) {
+    h2 {
+      font-size: 50px;
+    }
+    p {
+      width: 450px;
+    }
+    .project-container {
+      margin-left: -100px;
     }
   }
 `

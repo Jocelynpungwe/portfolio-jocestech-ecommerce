@@ -1,44 +1,27 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import { useSelector } from 'react-redux'
-import Error from './Error'
-import Loading from './Loading'
 
-const SpecialProductTwo = () => {
-  const {
-    products_loading: loading,
-    products_error: error,
-    products,
-  } = useSelector((store) => store.products)
-
-  if (loading) {
-    return <Loading />
-  }
-  if (error) {
-    return <Error />
-  }
-
+const SpecialProductTwo = ({ products }) => {
   return (
     <Wrapper className="section-center">
       <div className="homepage-product-zx7-speaker">
-        {products.length > 0 &&
-          products
-            .filter((product) => product.name === 'iPhone X')
-            .map((product) => {
-              return (
-                <div className="homepage-product-zx7-speaker-container">
-                  <h2>{product.name}</h2>
-                  <Link
-                    class="btn secondary-btn"
-                    to={`products/${product.id}`}
-                    key={product.name}
-                  >
-                    see product
-                  </Link>
-                </div>
-              )
-            })}
+        {products
+          .filter((product) => product.name === 'ZX7 SPEAKER')
+          .map((product) => {
+            return (
+              <div className="homepage-product-zx7-speaker-container">
+                <h2>{product.name}</h2>
+                <Link
+                  class="btn secondary-btn"
+                  to={`products/${product._id}`}
+                  key={product.name}
+                >
+                  see product
+                </Link>
+              </div>
+            )
+          })}
       </div>
     </Wrapper>
   )

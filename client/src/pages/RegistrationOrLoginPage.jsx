@@ -58,6 +58,9 @@ const RegistrationOrLoginPage = () => {
   //       }, 3000)
   //     }
   //   }, [user, navigate])
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   return (
     <Wrapper className="full-page">

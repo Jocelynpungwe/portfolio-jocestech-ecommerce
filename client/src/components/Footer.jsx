@@ -25,10 +25,10 @@ const Footer = () => {
             </div>
           </div>
           <p className="footer-paragraph">
-            Jocestech is an all in one stop to fulfill your audio needs. We're a
-            small team of music lovers and sound specialists who are devoted to
-            helping you get the most out of personal audio. Come and visit our
-            demo facility - we’re open 7 days a week.
+            Jocestech is an all in one stop to fulfill your tech needs. We're a
+            small team of tech lovers and specialists who are devoted to helping
+            you get the most out of personal gadget. Come and visit our demo
+            facility - we’re open 7 days a week.
           </p>
           <div className="copyright-container">
             <p className="copyright">Copyright 2021. All Rights Reserved</p>

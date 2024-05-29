@@ -116,6 +116,7 @@ const filterSlice = createSlice({
       state.filters = {
         ...initialState.filters,
         price: state.filters.max_price,
+        max_price: state.filters.max_price,
       }
     },
   },

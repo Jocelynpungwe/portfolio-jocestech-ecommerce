@@ -62,13 +62,20 @@ const ProductSchema = mongoose.Schema(
     },
     features: {
       type: String,
-      default: 'Features of this product will be updated as soon as possible',
+      default:
+        'Computers, game consoles, headphones, laptops, speakers, and phones share several common features that enhance functionality and connectivity. These include various connectivity options like Bluetooth, Wi-Fi, USB ports, and 3.5mm audio jacks. They all possess audio capabilities such as built-in speakers and microphones, and processing power through CPUs, GPUs, and RAM for multitasking and performance. Display and graphics support, user interfaces with operating systems, and touch controls are prevalent. Portability is ensured with battery power and lightweight designs. Internal and expandable storage, smart features like voice assistants, and app ecosystems enhance user experience. Network capabilities for internet access and streaming, along with inter-device synchronization and peripheral support, further integrate these devices into a cohesive technological ecosystem.',
       required: [true, 'Please provide product features'],
       maxlength: [1000, 'features can not be more than 1000 characters'],
     },
     box: {
       type: [String],
-      default: ['1x User Manual', '1x Travel Bag'],
+      default: [
+        '1x Device Unit',
+        '1x User Manual',
+        '1x Documenation Warranty',
+        '1x USB Cable',
+        '1x Travel Bag',
+      ],
       required: true,
     },
     groupRating: {

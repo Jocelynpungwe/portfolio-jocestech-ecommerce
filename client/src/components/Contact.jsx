@@ -4,25 +4,29 @@ import styled from 'styled-components'
 const Contact = () => {
   return (
     <Wrapper>
-      {/* <div className="section-center"> */}
-      {/* <h3>Join our newsletter and get 20% off</h3>
-        <div className="content"> */}
-      {/* <p>
+      <div className="section-center">
+        <h3>Join our newsletter and get 20% off</h3>
+        <div className="content">
+          <p>
             Join our tech community and stay ahead with the latest in
             innovation, exclusive deals, and tech insights. Sign up for our
             newsletter to unlock access to special offers, expert
             recommendations, and stay informed about the newest gadgets and
             trends. Elevate your tech experience – subscribe now to be part of
             our dynamic tech community!
-          </p> */}
-      <form className="contact-form">
-        <input type="email" className="form-input" placeholder="enter email" />
-        <button type="submit" className="submit-btn">
-          subscribe
-        </button>
-      </form>
-      {/* </div>
-      </div> */}
+          </p>
+          <form className="contact-form">
+            <input
+              type="email"
+              className="form-input"
+              placeholder="enter email"
+            />
+            <button type="submit" className="submit-btn">
+              subscribe
+            </button>
+          </form>
+        </div>
+      </div>
     </Wrapper>
   )
 }
@@ -65,7 +69,7 @@ const Wrapper = styled.section`
     text-transform: capitalize;
   }
   .submit-btn {
-    background: var(--clr-primary-5);
+    background: var(--primary-chocolate);
     text-transform: capitalize;
     letter-spacing: var(--spacing);
     cursor: pointer;
@@ -73,7 +77,7 @@ const Wrapper = styled.section`
     color: var(--clr-black);
   }
   .submit-btn:hover {
-    color: var(--clr-white);
+    background: var(--secondy-chocolate);
   }
   @media (min-width: 992px) {
     .content {

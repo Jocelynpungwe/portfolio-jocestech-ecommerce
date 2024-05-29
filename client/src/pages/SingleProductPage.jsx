@@ -40,6 +40,10 @@ const SingleProductPage = () => {
   }, [id])
 
   useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
+  useEffect(() => {
     if (error) {
       setTimeout(() => {
         navigate('/')

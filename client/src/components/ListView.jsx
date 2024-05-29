@@ -43,7 +43,7 @@ const Wrapper = styled.section`
     margin-bottom: 0.5rem;
   }
   .price {
-    color: var(--clr-primary-6);
+    color: var(--secondy-chocolate);
     margin-bottom: 0.75rem;
   }
   p {

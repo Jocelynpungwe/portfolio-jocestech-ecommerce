@@ -1,23 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import { useSelector } from 'react-redux'
-import Error from './Error'
-import Loading from './Loading'
 
-const SpecialProductThree = () => {
-  const {
-    products_loading: loading,
-    products_error: error,
-    products,
-  } = useSelector((store) => store.products)
-
-  if (loading) {
-    return <Loading />
-  }
-  if (error) {
-    return <Error />
-  }
+const SpecialProductThree = ({ products }) => {
   return (
     <Wrapper className="section-center">
       <div class="homepage-product-YX1-earphones">
@@ -25,25 +10,24 @@ const SpecialProductThree = () => {
         {/* <img src={specialImage} alt="earphones" /> */}
 
         <div class="homepage-product-YX1-earphones-container">
-          {products.length > 0 &&
-            products
-              .filter((product) => product.name === 'iPhone X')
-              .map((product) => {
-                return (
-                  <div
-                    class="homepage-product-YX1-earphones-info"
-                    key={product.name}
+          {products
+            .filter((product) => product.name === 'YX1 WIRELESS EARPHONES')
+            .map((product) => {
+              return (
+                <div
+                  class="homepage-product-YX1-earphones-info"
+                  key={product.name}
+                >
+                  <h2>YX1 EARPHONES</h2>
+                  <Link
+                    class="btn secondary-btn"
+                    to={`products/${product._id}`}
                   >
-                    <h2>YX1 EARPHONES</h2>
-                    <Link
-                      class="btn secondary-btn"
-                      to={`products/${product.id}`}
-                    >
-                      see product
-                    </Link>
-                  </div>
-                )
-              })}
+                    see product
+                  </Link>
+                </div>
+              )
+            })}
         </div>
       </div>
     </Wrapper>

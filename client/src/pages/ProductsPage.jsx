@@ -22,6 +22,10 @@ const ProductsPage = () => {
     dispatch(sortProduct())
   }, [filters, sort])
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   return (
     <main>
       <PageHero title="products" />

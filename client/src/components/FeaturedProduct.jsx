@@ -1,32 +1,8 @@
-import { useEffect } from 'react'
 import styled from 'styled-components'
-import Error from './Error'
-import Loading from './Loading'
 import Product from './Product'
-
-import { useSelector, useDispatch } from 'react-redux'
-import { getAllProducts } from '../features/product/productSlice'
-
+import { useSelector } from 'react-redux'
 const FeaturedProduct = () => {
-  const {
-    products_loading: loading,
-    products_error: error,
-    featured_products: featured,
-  } = useSelector((store) => store.products)
-
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    dispatch(getAllProducts())
-  }, [])
-
-  if (loading) {
-    return <Loading />
-  }
-  if (error) {
-    return <Error />
-  }
-
+  const { featured_products: featured } = useSelector((store) => store.products)
   return (
     <Wrapper className="section">
       <div className="section-center featured">

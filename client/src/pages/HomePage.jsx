@@ -1,20 +1,15 @@
-import React from 'react'
-import {
-  FeaturedProducts,
-  Hero,
-  Services,
-  Contact,
-  SpecialProductSection,
-  SmallWebDescription,
-} from '../components'
+import { useEffect } from 'react'
+import { Hero, Services, Contact, AdvertismentSection } from '../components'
 const HomePage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   return (
     <main>
       <Hero />
-      <FeaturedProducts />
-      <SpecialProductSection />
+      <AdvertismentSection />
       <Services />
-      <SmallWebDescription />
+      <Contact />
     </main>
   )
 }
