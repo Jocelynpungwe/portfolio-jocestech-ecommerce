@@ -1,10 +1,14 @@
 import { createSlice, createAsyncThunk, current } from '@reduxjs/toolkit'
 import customeFetch from '../../utils/customeFetch'
+import {
+  addProductsToLocalStoreage,
+  getProductsFromLocalStorage,
+} from '../../utils/localStorage'
 
 const initialState = {
   products_loading: false,
   products_error: false,
-  products: [],
+  products: getProductsFromLocalStorage(),
   featured_products: [],
   single_product_loading: false,
   single_product_error: false,
@@ -12,7 +16,9 @@ const initialState = {
   single_product_review: [],
   single_product_review_loading: false,
   single_product_review_error: false,
-  review_page: 0,
+  page: 1,
+  numOfPages: 1,
+  recommanded_products: [],
 }
 
 export const getAllProducts = createAsyncThunk(
@@ -32,6 +38,13 @@ export const getSingleProduct = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       const { data } = await customeFetch.get(`/products/${id}`)
+      const { product } = data
+      thunkAPI.dispatch(
+        getRecommandedProduct({
+          products: thunkAPI.getState().products.products,
+          category: product.category,
+        })
+      )
       return data
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.msg)
@@ -43,7 +56,7 @@ export const getSingleProductReview = createAsyncThunk(
   'product/getSingleProductReview',
   async (id, thunkAPI) => {
     try {
-      const page = 1
+      const { page } = thunkAPI.getState().products
       const { data } = await customeFetch.get(
         `/products/review/${id}?page=${page}`
       )
@@ -57,7 +70,18 @@ export const getSingleProductReview = createAsyncThunk(
 const productSlice = createSlice({
   name: 'Product',
   initialState,
-  reducers: {},
+  reducers: {
+    getRecommandedProduct: (state, { payload }) => {
+      const { products, category } = payload
+
+      state.recommanded_products = products.filter(
+        (product) => product.category === category
+      )
+    },
+    changePage: (state, { payload }) => {
+      state.page = payload
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getAllProducts.pending, (state) => {
@@ -69,7 +93,7 @@ const productSlice = createSlice({
         state.products_loading = false
         state.products_error = false
         state.products = products
-
+        addProductsToLocalStoreage(products)
         state.featured_products = products.filter((product) => {
           return product.featured === true
         })
@@ -87,7 +111,7 @@ const productSlice = createSlice({
         state.single_product_error = false
         const { product } = payload
         state.single_product = product
-        console.log(product)
+        state.page = 1
       })
       .addCase(getSingleProduct.rejected, (state, { payload }) => {
         state.single_product_loading = false
@@ -98,11 +122,11 @@ const productSlice = createSlice({
         state.single_product_review_error = false
       })
       .addCase(getSingleProductReview.fulfilled, (state, { payload }) => {
-        const { reviews } = payload
+        const { reviews, numOfPages } = payload
         state.single_product_review_loading = false
         state.single_product_review_error = false
-        console.log(reviews)
         state.single_product_review = reviews
+        state.numOfPages = numOfPages
       })
       .addCase(getSingleProductReview.rejected, (state, { payload }) => {
         state.single_product_review_loading = false
@@ -111,4 +135,5 @@ const productSlice = createSlice({
   },
 })
 
+export const { getRecommandedProduct, changePage } = productSlice.actions
 export default productSlice.reducer

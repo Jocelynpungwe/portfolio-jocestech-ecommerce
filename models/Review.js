@@ -49,6 +49,11 @@ ReviewSchema.statics.groupRating = async function (productId) {
         },
       },
     },
+    {
+      $sort: {
+        _id: -1,
+      },
+    },
   ])
 
   try {

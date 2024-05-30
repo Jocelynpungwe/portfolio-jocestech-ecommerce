@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import {
+  getAllProducts,
   getSingleProduct,
   getSingleProductReview,
 } from '../features/product/productSlice'
@@ -14,14 +15,16 @@ import {
   Stars,
   PageHero,
   Reviews,
-  ProductBox,
-  FeaturedProducts,
   SmallWebDescription,
+  RecommendedProducts,
 } from '../components'
+
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const SingleProductPage = () => {
+  const navigate = useNavigate()
+
   const { id } = useParams()
 
   const dispatch = useDispatch()
@@ -32,12 +35,17 @@ const SingleProductPage = () => {
     single_product_review: singleProductReview,
     single_product_review_loading: singleReviewLoading,
     single_product_review_error: singleReviewError,
+    products,
+    page,
   } = useSelector((store) => store.products)
 
   useEffect(() => {
     dispatch(getSingleProduct(id))
-    dispatch(getSingleProductReview(id))
   }, [id])
+
+  useEffect(() => {
+    dispatch(getSingleProductReview(id))
+  }, [id, page])
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -73,6 +81,7 @@ const SingleProductPage = () => {
     freeShipping,
     groupRating,
     numOfReviews,
+    category,
   } = product
 
   return (
@@ -128,14 +137,18 @@ const SingleProductPage = () => {
         ) : singleReviewError ? (
           <Error />
         ) : (
-          <Reviews
-            reviews={singleProductReview}
-            groupRating={groupRating}
-            averageRating={averageRating}
-          />
+          <>
+            <h6>Reviews</h6>
+            <Reviews
+              reviews={singleProductReview}
+              groupRating={groupRating}
+              averageRating={averageRating}
+            />
+          </>
         )}
-        <ProductBox image={image} />
-        <FeaturedProducts />
+
+        <h6>RECOMMANDED PRODUCTS</h6>
+        <RecommendedProducts />
         <SmallWebDescription />
       </div>
     </Wrapper>

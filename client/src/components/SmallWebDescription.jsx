@@ -4,7 +4,7 @@ import Contact from './Contact'
 
 const SmallWebDescription = () => {
   return (
-    <Wrapper className="section-center">
+    <Wrapper className="section section-center">
       <div className="audio-headset-product">
         <div className="audio-product-background"></div>
         {/* <img src={image} alt="person with headphones on" /> */}
@@ -13,16 +13,15 @@ const SmallWebDescription = () => {
             Bringing you the{' '}
             <span className="span-line">
               {' '}
-              <span className="span-color">best</span> audio gear
+              <span className="span-color">best</span> Gadget
             </span>
           </h2>
           <p>
-            Located at the heart of Ottawa, Audiophile is the premier store for
-            high end headphones, earphones, speakers, and audio accessories. We
-            have a large showroom and luxury demonstration rooms available for
-            you to browse and experience a wide range of our products. Stop by
-            our store to meet some of the fantastic people who make Audiophile
-            the best place to buy your portable audio equipment.
+            Located at the heart of Ottawa, Jocestech is the premier store for
+            high end gadgets. We have a large showroom and luxury demonstration
+            rooms available for you to browse and experience a wide range of our
+            products. Stop by our store to meet some of the fantastic people who
+            make Jocestech the best place to buy your portable gadget.
           </p>
         </div>
         {/* <Contact /> */}

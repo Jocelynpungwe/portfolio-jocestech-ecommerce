@@ -96,12 +96,13 @@ const deleteReview = async (req, res) => {
 const getSingleProductReviews = async (req, res) => {
   const { id: productId } = req.params
   const { page: pageNo } = req.query
+  const queryObject = { product: productId }
 
   const page = Number(pageNo) || 1
-  const limit = Number(req.params.limit) || 10
+  const limit = Number(req.params.limit) || 5
   const skip = (page - 1) * limit
 
-  const reviews = await Review.find({ product: productId })
+  const reviews = await Review.find(queryObject)
     .skip(skip)
     .limit(limit)
     .populate({
@@ -109,7 +110,10 @@ const getSingleProductReviews = async (req, res) => {
       select: 'name',
     })
 
-  res.status(StatusCodes.OK).json({ reviews, count: reviews.length })
+  const totalReviews = await Review.countDocuments(queryObject)
+  const numOfPages = Math.ceil(totalReviews / limit)
+
+  res.status(StatusCodes.OK).json({ reviews, count: totalReviews, numOfPages })
 }
 
 module.exports = {

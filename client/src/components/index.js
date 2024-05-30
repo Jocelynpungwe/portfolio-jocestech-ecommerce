@@ -30,8 +30,11 @@ import SpecialProductTwo from './SpecialProductTwo'
 import SpecialProductThree from './SpecialProductThree'
 import SmallWebDescription from './SmallWebDescription'
 import Reviews from './Reviews'
-import ProductBox from './ProductBox'
+
 import AdvertismentSection from './AdvertismentSection'
+import RecommendedProducts from './RecommendedProducts'
+import Pagination from './Pagination'
+import AddReview from './AddReview'
 
 export {
   Navbar,
@@ -66,6 +69,8 @@ export {
   SpecialProductThree,
   SmallWebDescription,
   Reviews,
-  ProductBox,
   AdvertismentSection,
+  RecommendedProducts,
+  Pagination,
+  AddReview,
 }

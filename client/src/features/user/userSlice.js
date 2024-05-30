@@ -1,5 +1,7 @@
 import { createSlice, createAsyncThunk, current } from '@reduxjs/toolkit'
 import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
+
 import {
   addUserToLocalStorage,
   getUserFromLocalStorage,
@@ -42,8 +44,9 @@ export const logoutUser = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const { data } = await customeFetch.get('/auth/logout')
-
+      // have to clear everything later
       thunkAPI.dispatch(clearCart())
+
       return data
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.msg)
@@ -85,11 +88,12 @@ const userSlice = createSlice({
         state.isLoading = true
       })
       .addCase(logoutUser.fulfilled, (state, { payload }) => {
+        const navigate = useNavigate()
         const { msg } = payload
         state.isLoading = false
         state.user = null
-        console.log(msg)
         removeUserFromLocalStorage()
+        navigate('/')
       })
       .addCase(logoutUser.rejected, (state, { payload }) => {
         state.isLoading = false
