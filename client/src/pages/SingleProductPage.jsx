@@ -49,7 +49,7 @@ const SingleProductPage = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0)
-  }, [])
+  }, [id])
 
   useEffect(() => {
     if (error) {
@@ -95,7 +95,11 @@ const SingleProductPage = () => {
           <ProductImages image={image} />
           <section className="content">
             <h2>{name}</h2>
-            <Stars averageRating={averageRating} reviews={numOfReviews} />
+            <Stars
+              averageRating={averageRating}
+              reviews={numOfReviews}
+              showReview={true}
+            />
             <h5 className="price">{formatPrice(price)}</h5>
             <p className="desc">{description}</p>
             <p className="info">
@@ -143,6 +147,7 @@ const SingleProductPage = () => {
               reviews={singleProductReview}
               groupRating={groupRating}
               averageRating={averageRating}
+              productId={id}
             />
           </>
         )}

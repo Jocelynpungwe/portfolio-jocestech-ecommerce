@@ -91,7 +91,7 @@ const Wrapper = styled.article`
     }
   }
   .price-small {
-    color: var(--clr-primary-5);
+    color: var(--primary-chocolate);
   }
   .amount-btns {
     width: 75px;
@@ -133,7 +133,7 @@ const Wrapper = styled.article`
     .price {
       display: block;
       font-size: 1rem;
-      color: var(--clr-primary-5);
+      color: var(--primary-chocolate);
       font-weight: 400;
     }
     .name {

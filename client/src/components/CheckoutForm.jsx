@@ -11,19 +11,22 @@ import { updateOrder } from '../features/order/orderSlice'
 const initialCustumerState = {
   fullName: '',
   email: '',
-  phoneNumber: '',
 }
 
 const CheckoutForm = ({ order }) => {
   const stripe = useStripe()
   const elements = useElements()
+  const navigate = useNavigate()
 
   const [message, setMessage] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
 
-  const finalPrice = 1000
-
   const { address } = useSelector((store) => store.order)
+  const { user } = useSelector((store) => store.user)
+  const { cart, shipping_fee, total_amount } = useSelector(
+    (store) => store.cart
+  )
+
   const dispatch = useDispatch()
 
   function changeBilling(e) {
@@ -42,25 +45,7 @@ const CheckoutForm = ({ order }) => {
     if (!clientSecret) {
       return
     }
-
-    stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
-      switch (paymentIntent.status) {
-        case 'succeeded':
-          setMessage('Payment succeeded!')
-          break
-        case 'processing':
-          console.log(paymentIntent)
-          setMessage('Your payment is processing.')
-          break
-        case 'requires_payment_method':
-          setMessage('Your payment was not successful, please try again.')
-          break
-        default:
-          setMessage('Something went wrong.')
-          break
-      }
-    })
-  }, [stripe])
+  }, [])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -82,17 +67,6 @@ const CheckoutForm = ({ order }) => {
       redirect: 'if_required',
     })
 
-    // This point will only be reached if there is an immediate error when
-    // confirming the payment. Otherwise, your customer will be redirected to
-    // your `return_url`. For some payment methods like iDEAL, your customer will
-    // be redirected to an intermediate site first to authorize the payment, then
-    // redirected to the `return_url`.
-    // if (error.type === 'card_error' || error.type === 'validation_error') {
-    //   setMessage(error.message)
-    // } else {
-    //   setMessage('An unexpected error occurred.')
-    // }
-
     if (error) {
       console.error('Payment failed', error)
       setMessage('Payment failed. Please try again.')
@@ -101,6 +75,7 @@ const CheckoutForm = ({ order }) => {
       dispatch(
         updateOrder({ paymentIntentId: paymentIntent.id, address, order })
       )
+      navigate('/payment-successfull')
       setMessage('Payment successful! Thank you for your purchase.')
       // Handle post-payment logic here, such as updating order status in the backend
     } else {
@@ -118,7 +93,7 @@ const CheckoutForm = ({ order }) => {
     <Wrapper>
       <form id="payment-form" onSubmit={handleSubmit}>
         <div className="form-container">
-          {/* <h3>BILLING DETAILS</h3>
+          <h3>BILLING DETAILS</h3>
           <div className="grid-layout-container">
             <div>
               <label htmlFor="fullName">Name</label>
@@ -127,8 +102,7 @@ const CheckoutForm = ({ order }) => {
                 placeholder="Alexel Ward"
                 id="fullName"
                 name="fullName"
-                value={customerName.fullName}
-                onChange={changeCustomerName}
+                value={user.name}
                 required
               />
             </div>
@@ -139,24 +113,11 @@ const CheckoutForm = ({ order }) => {
                 placeholder="alexi@mail.com"
                 id="email"
                 name="email"
-                value={customerName.email}
-                onChange={changeCustomerName}
+                value={user.email}
                 required
               />
             </div>
-            <div>
-              <label htmlFor="phoneNumber">Phone Number</label>
-              <input
-                type="number"
-                placeholder="+1 202-555-0136"
-                id="phoneNumber"
-                name="phoneNumber"
-                value={customerName.phoneNumber}
-                onChange={changeCustomerName}
-                required
-              />
-            </div>
-          </div> */}
+          </div>
           {/* shipping */}
           <h3>SHIPPING INFO</h3>
           <div className="grid-layout-container">
@@ -244,12 +205,13 @@ const CheckoutForm = ({ order }) => {
                 )
               })}
             </div>
-            {/* <p className="shipping-fee">
+            <p className="shipping-fee">
               Shipping Fee: {formatPrice(shipping_fee)}
             </p>
             <p className="final-price">
-              FINAL PRICE: <span>{formatPrice(finalPrice)}</span>
-            </p> */}
+              FINAL PRICE:{' '}
+              <span>{formatPrice(total_amount + shipping_fee)}</span>
+            </p>
           </article>
         </div>
 
@@ -448,7 +410,7 @@ const Wrapper = styled.section`
   .spinner:before {
     width: 10.4px;
     height: 20.4px;
-    background: #5469d4;
+    background: var(--secondy-chocolate);
     border-radius: 20.4px 0 0 20.4px;
     top: -0.2px;
     left: -0.2px;
@@ -460,7 +422,7 @@ const Wrapper = styled.section`
   .spinner:after {
     width: 10.4px;
     height: 10.2px;
-    background: #5469d4;
+    background: var(--secondy-chocolate);
     border-radius: 0 10.2px 10.2px 0;
     top: -0.1px;
     left: 10.2px;

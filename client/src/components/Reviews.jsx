@@ -1,16 +1,22 @@
 import { useState, useEffect } from 'react'
 import { BsStarFill } from 'react-icons/bs'
 import Stars from './Stars'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import styled from 'styled-components'
 import moment from 'moment'
 import Pagination from './Pagination'
 import AddReview from './AddReview'
+import {
+  deleteReview,
+  handleEditReview,
+  updateReview,
+} from '../features/review/reviewSlice'
 
-const Reviews = ({ reviews, groupRating = [], averageRating }) => {
+const Reviews = ({ reviews, groupRating = [], averageRating, productId }) => {
   const [totalGroupRating, setTotalGroupRating] = useState(0)
   const { user } = useSelector((store) => store.user)
   const { numOfPages } = useSelector((store) => store.products)
+  const dispatch = useDispatch()
 
   useEffect(() => {
     if (groupRating.length > 0)
@@ -20,8 +26,6 @@ const Reviews = ({ reviews, groupRating = [], averageRating }) => {
         }, 0)
       )
   }, [groupRating])
-
-  console.log(groupRating)
 
   return (
     <Wrapper>
@@ -74,7 +78,9 @@ const Reviews = ({ reviews, groupRating = [], averageRating }) => {
                     type="button"
                     className="btn-review edit-btn"
                     onClick={() =>
-                      console.log('edit review with id:', review._id)
+                      dispatch(
+                        handleEditReview({ reviewId: review._id, reviews })
+                      )
                     }
                   >
                     Edit
@@ -82,9 +88,7 @@ const Reviews = ({ reviews, groupRating = [], averageRating }) => {
                   <button
                     type="button"
                     className="btn-review delete-btn"
-                    onClick={() =>
-                      console.log('delete review with id:', review._id)
-                    }
+                    onClick={() => dispatch(deleteReview(review._id))}
                   >
                     Delete
                   </button>
@@ -96,7 +100,7 @@ const Reviews = ({ reviews, groupRating = [], averageRating }) => {
         )
       })}
       {numOfPages > 1 && <Pagination />}
-      <AddReview />
+      <AddReview productId={productId} />
     </Wrapper>
   )
 }

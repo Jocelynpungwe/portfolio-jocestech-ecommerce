@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { AppLogo, FormRow } from '../components'
+import { FormRow } from '../components'
 import { registerUser, loginUser } from '../features/user/userSlice'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -38,7 +38,7 @@ const RegistrationOrLoginPage = () => {
 
     if (!isMember) {
       dispatch(registerUser({ name, email, password }))
-      console.log('register')
+
       return
     }
 
@@ -51,13 +51,14 @@ const RegistrationOrLoginPage = () => {
     })
   }
 
-  //   useEffect(() => {
-  //     if (user) {
-  //       setTimeout(() => {
-  //         navigate('/')
-  //       }, 3000)
-  //     }
-  //   }, [user, navigate])
+  useEffect(() => {
+    if (user) {
+      setTimeout(() => {
+        navigate('/')
+      }, 1000)
+    }
+  }, [user, navigate])
+
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
@@ -65,7 +66,6 @@ const RegistrationOrLoginPage = () => {
   return (
     <Wrapper className="full-page">
       <form className="form" onSubmit={onSubmit}>
-        <AppLogo />
         <h3>{values.isMember ? 'Login' : 'Register'}</h3>
 
         {/* name field */}
@@ -89,19 +89,7 @@ const RegistrationOrLoginPage = () => {
           type="password"
           handleChange={handleChange}
         />
-        <button
-          type="button"
-          className="btn btn-block btn-hipster"
-          disabled={isLoading}
-          onClick={() => {
-            dispatch(
-              loginUser({ email: 'testUser@test.com', password: 'secret' })
-            )
-          }}
-        >
-          {isLoading ? 'loading...' : 'demo'}
-        </button>
-        <button type="submit" className="btn btn-block">
+        <button type="submit" className="btn ">
           submit
         </button>
         <p>
@@ -126,11 +114,13 @@ const Wrapper = styled.section`
   }
   .form {
     max-width: 400px;
-    border-top: 5px solid var(--primary-500);
+    border-top: 5px solid var(--primary-chocolate);
+    box-shadow: var(--dark-shadow);
   }
 
   h3 {
     text-align: center;
+    color: var(--primary-chocolate);
   }
   p {
     margin: 0;

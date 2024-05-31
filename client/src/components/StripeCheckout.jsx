@@ -46,7 +46,7 @@ const StripeCheckout = () => {
   }
 
   return (
-    <Wrapper>
+    <Wrapper className="section">
       <div className="App">
         {clientSecret && (
           <Elements options={options} stripe={stripePromise}>
@@ -60,7 +60,7 @@ const StripeCheckout = () => {
 
 const Wrapper = styled.section`
   form {
-    width: 30vw;
+    width: 80vw;
     min-width: 500px;
     align-self: center;
     box-shadow: 0px 0px 0px 0.5px rgba(50, 50, 93, 0.1),
@@ -84,7 +84,7 @@ const Wrapper = styled.section`
 
   /* Buttons and links */
   button {
-    background: #5469d4;
+    background: var(--primary-chocolate);
     font-family: Arial, sans-serif;
     color: #ffffff;
     border-radius: 4px;

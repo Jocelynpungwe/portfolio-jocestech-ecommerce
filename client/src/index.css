@@ -339,8 +339,8 @@ button {
   width: 100%;
   padding: 0.375rem 0.75rem;
   border-radius: var(--borderRadius);
-  background: var(--backgroundColor);
-  border: 1px solid var(--grey-200);
+  background: var(--seondary-gray);
+  border: 1px solid var(--primary-gray);
 }
 .form-input,
 .form-select,
@@ -356,10 +356,10 @@ button {
 }
 ::placeholder {
   font-family: inherit;
-  color: var(--grey-400);
+  color: var(--clr-grey-6);
 }
 .form-alert {
-  color: var(--red-dark);
+  color: var(--clr-red-dark);
   letter-spacing: var(--letterSpacing);
   text-transform: capitalize;
 }

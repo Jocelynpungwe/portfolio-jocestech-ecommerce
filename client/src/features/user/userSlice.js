@@ -40,7 +40,7 @@ export const loginUser = createAsyncThunk(
 )
 
 export const logoutUser = createAsyncThunk(
-  'user/ogoutUser',
+  'user/logoutUser',
   async (_, thunkAPI) => {
     try {
       const { data } = await customeFetch.get('/auth/logout')
