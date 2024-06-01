@@ -9,7 +9,7 @@ import { Elements } from '@stripe/react-stripe-js'
 import CheckoutForm from './CheckoutForm'
 import { createOrder } from '../features/order/orderSlice'
 
-const stripePromise = loadStripe(process.env.STRIPE_PUBLIC)
+const stripePromise = loadStripe(process.env.STRIPE)
 
 const StripeCheckout = () => {
   console.log(process.env)
@@ -19,6 +19,7 @@ const StripeCheckout = () => {
     tax,
     shipping_fee: shippingFee,
   } = useSelector((store) => store.cart)
+
   const {
     clientSecret,
     order,

@@ -36,7 +36,7 @@ export const updateOrder = createAsyncThunk(
   async (item, thunkAPI) => {
     try {
       const { order, address, paymentIntentId } = item
-      console.log(address)
+
       const { data } = await customeFetch.patch(`/orders/${order.orderId}`, {
         paymentIntentId,
         address,

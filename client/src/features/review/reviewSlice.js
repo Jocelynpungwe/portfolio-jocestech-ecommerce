@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk, current } from '@reduxjs/toolkit'
 import customeFetch from '../../utils/customeFetch'
 import { getSingleProductReview } from '../product/productSlice'
+import { toast } from 'react-toastify'
 
 const initialState = {
   title: '',
@@ -10,6 +11,7 @@ const initialState = {
   isError: false,
   isEdit: false,
   editReviewId: '',
+  newReview: null,
 }
 
 export const addReview = createAsyncThunk(
@@ -17,10 +19,6 @@ export const addReview = createAsyncThunk(
   async (review, thunkAPI) => {
     try {
       const { data } = await customeFetch.post('/reviews', review)
-
-      thunkAPI.dispatch(
-        getSingleProductReview(thunkAPI.getState().products.single_product.id)
-      )
 
       return data
     } catch (error) {
@@ -35,9 +33,7 @@ export const updateReview = createAsyncThunk(
     const { reviewId, review } = reviews
     try {
       const { data } = await customeFetch.patch(`/reviews/${reviewId}`, review)
-      thunkAPI.dispatch(
-        getSingleProductReview(thunkAPI.getState().products.single_product.id)
-      )
+
       return data
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.msg)
@@ -50,9 +46,6 @@ export const deleteReview = createAsyncThunk(
   async (reviewsId, thunkAPI) => {
     try {
       const { data } = await customeFetch.delete(`/reviews/${reviewsId}`)
-      thunkAPI.dispatch(
-        getSingleProductReview(thunkAPI.getState().products.single_product.id)
-      )
 
       return data
     } catch (error) {
@@ -81,6 +74,10 @@ const reviewSlice = createSlice({
       state.comment = editReview.comment
       state.rating = editReview.rating
       state.title = editReview.title
+      toast.success('Edit Review Mode Selected, Scroll Down')
+    },
+    clearReview: (state, { payload }) => {
+      state.newReview = null
     },
   },
   extraReducers: (builder) => {
@@ -90,59 +87,67 @@ const reviewSlice = createSlice({
         state.isError = false
       })
       .addCase(addReview.fulfilled, (state, { payload }) => {
+        const { review } = payload
         state.isLoading = false
         state.isError = false
-        state.isEdit = true
+        state.isEdit = false
         state.editReviewId = ''
         state.comment = initialState.comment
         state.rating = initialState.rating
         state.title = initialState.title
+        state.newReview = review
+        toast.success('Review Added sucessfully')
       })
       .addCase(addReview.rejected, (state, { payload }) => {
         state.isLoading = false
         state.isError = true
+        toast.error(payload)
       })
       .addCase(updateReview.pending, (state) => {
         state.isLoading = true
         state.isError = false
       })
       .addCase(updateReview.fulfilled, (state, { payload }) => {
+        const { review } = payload
         state.isLoading = false
         state.isError = false
-        state.isEdit = true
+        state.isEdit = false
         state.editReviewId = ''
         state.comment = initialState.comment
         state.rating = initialState.rating
         state.title = initialState.title
+        state.newReview = review
+        toast.success('Review Updated sucessfully')
       })
       .addCase(updateReview.rejected, (state, { payload }) => {
         state.isLoading = false
         state.isError = true
+        toast.error(payload)
       })
       .addCase(deleteReview.pending, (state) => {
         state.isLoading = true
         state.isError = false
-        console.log('pending')
       })
       .addCase(deleteReview.fulfilled, (state, { payload }) => {
+        const { msg } = payload
         state.isLoading = false
         state.isError = false
-        state.isEdit = true
+        state.isEdit = false
         state.editReviewId = ''
         state.comment = initialState.comment
         state.rating = initialState.rating
         state.title = initialState.title
-        console.log('fullfiled')
-        console.log(current(state))
+        state.newReview = null
+        toast.success(msg)
       })
       .addCase(deleteReview.rejected, (state, { payload }) => {
         state.isLoading = false
         state.isError = true
-        console.log('reject')
-        console.log(payload)
+        toast.error(payload)
       })
   },
 })
 
-export const { handleReviewChange, handleEditReview } = reviewSlice.actions
+export const { handleReviewChange, handleEditReview, clearReview } =
+  reviewSlice.actions
 export default reviewSlice.reducer

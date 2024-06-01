@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import {
-  getAllProducts,
   getSingleProduct,
   getSingleProductReview,
 } from '../features/product/productSlice'
+
 import { useParams } from 'react-router-dom'
 import { formatPrice } from '../utils/helpers'
 import {
@@ -20,11 +20,9 @@ import {
 } from '../components'
 
 import styled from 'styled-components'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const SingleProductPage = () => {
-  const navigate = useNavigate()
-
   const { id } = useParams()
 
   const dispatch = useDispatch()
@@ -35,33 +33,23 @@ const SingleProductPage = () => {
     single_product_review: singleProductReview,
     single_product_review_loading: singleReviewLoading,
     single_product_review_error: singleReviewError,
-    products,
     page,
   } = useSelector((store) => store.products)
+  const { newReview } = useSelector((store) => store.review)
 
   useEffect(() => {
     dispatch(getSingleProduct(id))
-  }, [id])
+    window.scrollTo(0, 0)
+  }, [id, newReview])
 
   useEffect(() => {
     dispatch(getSingleProductReview(id))
-  }, [id, page])
-
-  useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [id])
-
-  useEffect(() => {
-    if (error) {
-      setTimeout(() => {
-        navigate('/')
-      }, 3000)
-    }
-  }, [error])
+  }, [id, page, newReview])
 
   if (loading) {
     return <Loading />
   }
+
   if (error) {
     return <Error />
   }
@@ -114,6 +102,11 @@ const SingleProductPage = () => {
               <span>Brand :</span>
               {company}
             </p>
+            {freeShipping && (
+              <p className="info">
+                <span>Free Shipping</span>
+              </p>
+            )}
             <hr />
             {inventory > 0 && <AddToCart product={product} />}
           </section>

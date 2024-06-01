@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import AppLogo from './AppLogo'
 import { FaBars } from 'react-icons/fa'

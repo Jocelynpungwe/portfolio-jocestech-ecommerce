@@ -91,15 +91,10 @@ const updateOrder = async (req, res) => {
   const { id: orderId } = req.params
   const { paymentIntentId, address } = req.body
 
-  console.log(orderId)
-  console.log('body:', req.body)
-
   const order = await Order.findOne({ _id: orderId })
   if (!order) {
     throw new NotFoundError(`No order with id : ${orderId}`)
   }
-
-  console.log(address)
 
   checkPermissions(req.user, order.user)
   order.paymentIntentId = paymentIntentId

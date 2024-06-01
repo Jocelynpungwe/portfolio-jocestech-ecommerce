@@ -4,12 +4,13 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { useSelector, useDispatch } from 'react-redux'
 import { toggleCloseSideBar } from '../features/toggle/toggleSlice'
-import { clearCart } from '../features/cart/cartSlice'
+
 import { logoutUser } from '../features/user/userSlice'
 
 const CartButtons = () => {
   const { total_items } = useSelector((store) => store.cart)
   const { user } = useSelector((store) => store.user)
+
   const dispatch = useDispatch()
 
   return (
@@ -29,12 +30,20 @@ const CartButtons = () => {
         <button
           type="button"
           className="auth-btn"
-          onClick={() => dispatch(logoutUser())}
+          onClick={() => {
+            dispatch(toggleCloseSideBar())
+            dispatch(logoutUser())
+          }}
         >
           Logout <FaUserMinus />
         </button>
       ) : (
-        <Link type="button" className="auth-btn" to="/register">
+        <Link
+          type="button"
+          className="auth-btn"
+          to="/register"
+          onClick={() => dispatch(toggleCloseSideBar())}
+        >
           Login <FaUserPlus />
         </Link>
       )}
@@ -50,7 +59,7 @@ const Wrapper = styled.div`
 
   .cart-btn {
     /* color: var(--clr-grey-1); */
-    color: white;
+    color: var(--actual-white);
     font-size: 1.5rem;
     letter-spacing: var(--spacing);
     /* color: var(--clr-grey-1); */
@@ -60,7 +69,7 @@ const Wrapper = styled.div`
   }
   @media (max-width: 1020px) {
     .cart-btn {
-      color: black;
+      color: var(--actual-white);
     }
   }
   .cart-container {
@@ -95,7 +104,7 @@ const Wrapper = styled.div`
     border-color: transparent;
     font-size: 1.5rem;
     cursor: pointer;
-    color: var(--clr-white);
+    color: var(--primary-chocolate);
     letter-spacing: var(--spacing);
     svg {
       margin-left: 5px;

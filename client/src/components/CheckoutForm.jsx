@@ -23,7 +23,7 @@ const CheckoutForm = ({ order }) => {
 
   const { address } = useSelector((store) => store.order)
   const { user } = useSelector((store) => store.user)
-  const { cart, shipping_fee, total_amount } = useSelector(
+  const { cart, tax, shipping_fee, total_amount } = useSelector(
     (store) => store.cart
   )
 
@@ -71,7 +71,6 @@ const CheckoutForm = ({ order }) => {
       console.error('Payment failed', error)
       setMessage('Payment failed. Please try again.')
     } else if (paymentIntent.status === 'succeeded') {
-      console.log('Payment successful', paymentIntent)
       dispatch(
         updateOrder({ paymentIntentId: paymentIntent.id, address, order })
       )
@@ -210,7 +209,7 @@ const CheckoutForm = ({ order }) => {
             </p>
             <p className="final-price">
               FINAL PRICE:{' '}
-              <span>{formatPrice(total_amount + shipping_fee)}</span>
+              <span>{formatPrice(total_amount + shipping_fee + tax)}</span>
             </p>
           </article>
         </div>

@@ -363,3 +363,7 @@ button {
   letter-spacing: var(--letterSpacing);
   text-transform: capitalize;
 }
+
+.Toastify__toast {
+  text-transform: capitalize;
+}

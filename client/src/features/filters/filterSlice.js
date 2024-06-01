@@ -28,9 +28,6 @@ export const getfilterProduct = createAsyncThunk(
       const { data } = await customeFetch.get('/products')
       const { products } = data
       return products
-      //   thunkAPI.dispatch(getAllProducts())
-      //   console.log(thunkAPI.getState())
-      //   return thunkAPI.getState().products.products
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.msg)
     }

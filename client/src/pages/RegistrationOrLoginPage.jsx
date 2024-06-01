@@ -53,9 +53,7 @@ const RegistrationOrLoginPage = () => {
 
   useEffect(() => {
     if (user) {
-      setTimeout(() => {
-        navigate('/')
-      }, 1000)
+      navigate('/products')
     }
   }, [user, navigate])
 
@@ -89,8 +87,8 @@ const RegistrationOrLoginPage = () => {
           type="password"
           handleChange={handleChange}
         />
-        <button type="submit" className="btn ">
-          submit
+        <button type="submit" className="btn " disabled={isLoading}>
+          {isLoading ? 'Loading...' : 'submit'}
         </button>
         <p>
           {values.isMember ? 'Not a member yet?' : 'Already a member?'}
@@ -133,7 +131,7 @@ const Wrapper = styled.section`
   .member-btn {
     background: transparent;
     border: transparent;
-    color: var(--primary-500);
+    color: var(--primary-chocolate);
     cursor: pointer;
     letter-spacing: var(--letterSpacing);
   }

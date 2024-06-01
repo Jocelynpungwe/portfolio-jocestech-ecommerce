@@ -1,14 +1,11 @@
 import { createSlice, createAsyncThunk, current } from '@reduxjs/toolkit'
 import customeFetch from '../../utils/customeFetch'
-import {
-  addProductsToLocalStoreage,
-  getProductsFromLocalStorage,
-} from '../../utils/localStorage'
+import { toast } from 'react-toastify'
 
 const initialState = {
   products_loading: false,
   products_error: false,
-  products: getProductsFromLocalStorage(),
+  products: [],
   featured_products: [],
   single_product_loading: false,
   single_product_error: false,
@@ -39,6 +36,7 @@ export const getSingleProduct = createAsyncThunk(
     try {
       const { data } = await customeFetch.get(`/products/${id}`)
       const { product } = data
+
       thunkAPI.dispatch(
         getRecommandedProduct({
           products: thunkAPI.getState().products.products,
@@ -93,7 +91,6 @@ const productSlice = createSlice({
         state.products_loading = false
         state.products_error = false
         state.products = products
-        addProductsToLocalStoreage(products)
         state.featured_products = products.filter((product) => {
           return product.featured === true
         })
@@ -101,6 +98,7 @@ const productSlice = createSlice({
       .addCase(getAllProducts.rejected, (state, { payload }) => {
         state.products_loading = false
         state.products_error = true
+        toast.error(payload)
       })
       .addCase(getSingleProduct.pending, (state) => {
         state.single_product_loading = true
@@ -116,6 +114,7 @@ const productSlice = createSlice({
       .addCase(getSingleProduct.rejected, (state, { payload }) => {
         state.single_product_loading = false
         state.single_product_error = true
+        toast.error(payload)
       })
       .addCase(getSingleProductReview.pending, (state) => {
         state.single_product_review_loading = true
@@ -131,6 +130,7 @@ const productSlice = createSlice({
       .addCase(getSingleProductReview.rejected, (state, { payload }) => {
         state.single_product_review_loading = false
         state.single_product_review_error = true
+        toast.error(payload)
       })
   },
 })

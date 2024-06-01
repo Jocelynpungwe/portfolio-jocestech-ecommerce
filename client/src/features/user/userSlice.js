@@ -1,14 +1,15 @@
-import { createSlice, createAsyncThunk, current } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { toast } from 'react-toastify'
-import { useNavigate } from 'react-router-dom'
 
 import {
   addUserToLocalStorage,
   getUserFromLocalStorage,
   removeUserFromLocalStorage,
+  removeCartFromLocalStorage,
 } from '../../utils/localStorage'
 import customeFetch from '../../utils/customeFetch'
 import { clearCart } from '../cart/cartSlice'
+import { clearReview } from '../review/reviewSlice'
 
 const initialState = {
   isLoading: false,
@@ -46,6 +47,7 @@ export const logoutUser = createAsyncThunk(
       const { data } = await customeFetch.get('/auth/logout')
       // have to clear everything later
       thunkAPI.dispatch(clearCart())
+      thunkAPI.dispatch(clearReview())
 
       return data
     } catch (error) {
@@ -68,9 +70,11 @@ const userSlice = createSlice({
         state.isLoading = false
         state.user = user
         addUserToLocalStorage(user)
+        toast.success(`Hello There ${user.name}`)
       })
       .addCase(registerUser.rejected, (state, { payload }) => {
         state.isLoading = false
+        toast.error(payload)
       })
       .addCase(loginUser.pending, (state) => {
         state.isLoading = true
@@ -80,23 +84,26 @@ const userSlice = createSlice({
         state.isLoading = false
         state.user = user
         addUserToLocalStorage(user)
+        toast.success(`Hello There ${user.name}`)
       })
       .addCase(loginUser.rejected, (state, { payload }) => {
         state.isLoading = false
+        toast.error(payload)
       })
       .addCase(logoutUser.pending, (state) => {
         state.isLoading = true
       })
       .addCase(logoutUser.fulfilled, (state, { payload }) => {
-        const navigate = useNavigate()
         const { msg } = payload
         state.isLoading = false
         state.user = null
         removeUserFromLocalStorage()
-        navigate('/')
+        removeCartFromLocalStorage()
+        toast.success(msg)
       })
       .addCase(logoutUser.rejected, (state, { payload }) => {
         state.isLoading = false
+        toast.error(payload)
       })
   },
 })

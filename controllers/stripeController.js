@@ -2,11 +2,11 @@ const stripe = require('stripe')(process.env.REACT_APP_STRIPE_SECRET_KEY)
 
 const stripeController = async (req, res) => {
   const { items } = req.body
-  const { purchese, total_amount, shipping_fee } = req.body
+  const { tax, total_amount, shipping_fee } = req.body
 
   const calculateOrderAmount = () => {
     //check the corrent pricess throw the data base
-    return total_amount + shipping_fee
+    return total_amount + shipping_fee + tax
   }
 
   // Create a PaymentIntent with the order amount and currency

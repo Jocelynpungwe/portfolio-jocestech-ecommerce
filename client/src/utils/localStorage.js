@@ -25,17 +25,3 @@ export const getCartFromLocalStorage = () => {
 export const removeCartFromLocalStorage = () => {
   localStorage.removeItem('cart')
 }
-
-export const addProductsToLocalStoreage = (cart) => {
-  localStorage.setItem('products', JSON.stringify(cart))
-}
-
-export const getProductsFromLocalStorage = () => {
-  const result = localStorage.getItem('products')
-  const products = result ? JSON.parse(result) : []
-  return products
-}
-
-export const removeProductsFromLocalStorage = () => {
-  localStorage.removeItem('products')
-}

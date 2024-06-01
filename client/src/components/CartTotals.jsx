@@ -4,7 +4,7 @@ import { formatPrice } from '../utils/helpers'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 const CartTotals = () => {
-  const { total_amount, shipping_fee } = useSelector((store) => store.cart)
+  const { total_amount, shipping_fee, tax } = useSelector((store) => store.cart)
   const { user } = useSelector((store) => store.user)
   return (
     <Wrapper>
@@ -16,9 +16,13 @@ const CartTotals = () => {
           <p>
             shipping fee :<span>{formatPrice(shipping_fee)}</span>
           </p>
+          <p>
+            tax :<span>{formatPrice(tax)}</span>
+          </p>
           <hr />
           <h4>
-            order total :<span>{formatPrice(total_amount + shipping_fee)}</span>
+            order total :
+            <span>{formatPrice(total_amount + shipping_fee + tax)}</span>
           </h4>
         </article>
         {user ? (
