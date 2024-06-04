@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux'
 const CartTotals = () => {
   const { total_amount, shipping_fee, tax } = useSelector((store) => store.cart)
   const { user } = useSelector((store) => store.user)
+
   return (
     <Wrapper>
       <div>

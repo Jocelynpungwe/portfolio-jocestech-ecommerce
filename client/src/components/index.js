@@ -30,7 +30,7 @@ import SpecialProductTwo from './SpecialProductTwo'
 import SpecialProductThree from './SpecialProductThree'
 import SmallWebDescription from './SmallWebDescription'
 import Reviews from './Reviews'
-
+import FeaturedProduct from './FeaturedProduct'
 import AdvertismentSection from './AdvertismentSection'
 import RecommendedProducts from './RecommendedProducts'
 import Pagination from './Pagination'
@@ -41,7 +41,7 @@ export {
   Sidebar,
   Footer,
   Hero,
-  FeaturedProducts,
+  FeaturedProduct,
   Services,
   Contact,
   CartButtons,

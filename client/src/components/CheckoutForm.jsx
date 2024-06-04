@@ -5,8 +5,9 @@ import { PaymentElement, useStripe, useElements } from '@stripe/react-stripe-js'
 import { formatPrice } from '../utils/helpers'
 import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { toggleAddress } from '../features/order/orderSlice'
+import { clearOrder, toggleAddress } from '../features/order/orderSlice'
 import { updateOrder } from '../features/order/orderSlice'
+import { clearCart } from '../features/cart/cartSlice'
 
 const initialCustumerState = {
   fullName: '',
@@ -74,6 +75,9 @@ const CheckoutForm = ({ order }) => {
       dispatch(
         updateOrder({ paymentIntentId: paymentIntent.id, address, order })
       )
+      dispatch(clearCart())
+      dispatch(clearOrder())
+
       navigate('/payment-successfull')
       setMessage('Payment successful! Thank you for your purchase.')
       // Handle post-payment logic here, such as updating order status in the backend
@@ -207,6 +211,7 @@ const CheckoutForm = ({ order }) => {
             <p className="shipping-fee">
               Shipping Fee: {formatPrice(shipping_fee)}
             </p>
+            <p className="shipping-fee">Tax: {formatPrice(tax)}</p>
             <p className="final-price">
               FINAL PRICE:{' '}
               <span>{formatPrice(total_amount + shipping_fee + tax)}</span>

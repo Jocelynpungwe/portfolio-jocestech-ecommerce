@@ -7,7 +7,7 @@ import PaymentSuccessfullPage from './PaymentSuccessfullPage'
 import ProductsPage from './ProductsPage'
 import RegistrationOrLoginPage from './RegistrationOrLoginPage'
 import SingleProductPage from './SingleProductPage'
-
+import SettingPage from './SettingPage'
 export {
   AboutPage,
   CartPage,
@@ -18,4 +18,5 @@ export {
   SingleProductPage,
   RegistrationOrLoginPage,
   PaymentSuccessfullPage,
+  SettingPage,
 }

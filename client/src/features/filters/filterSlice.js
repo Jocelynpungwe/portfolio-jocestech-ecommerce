@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { getAllProducts } from '../product/productSlice'
 import customeFetch from '../../utils/customeFetch'
+import { toast } from 'react-toastify'
 
 const initialState = {
   filtered_products: [],
@@ -137,6 +138,7 @@ const filterSlice = createSlice({
       .addCase(getfilterProduct.rejected, (state, { payload }) => {
         state.isLoading = false
         state.isError = true
+        toast.error(payload)
       })
   },
 })

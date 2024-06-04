@@ -1,5 +1,6 @@
 import React from 'react'
 import { FaShoppingCart, FaUserMinus, FaUserPlus } from 'react-icons/fa'
+import { CiSettings } from 'react-icons/ci'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { useSelector, useDispatch } from 'react-redux'
@@ -47,13 +48,24 @@ const CartButtons = () => {
           Login <FaUserPlus />
         </Link>
       )}
+      {user && (
+        <Link
+          type="button"
+          className="auth-btn"
+          to="/setting"
+          onClick={() => dispatch(toggleCloseSideBar())}
+        >
+          <CiSettings />
+        </Link>
+      )}
     </Wrapper>
   )
 }
 
 const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 1.5rem;
   align-items: center;
   width: 225px;
 

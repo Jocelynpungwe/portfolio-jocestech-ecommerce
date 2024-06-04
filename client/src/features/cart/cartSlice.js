@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+
 import {
   getCartFromLocalStorage,
   addCartToLocalStoreage,
@@ -9,7 +10,7 @@ const initialState = {
   cart: getCartFromLocalStorage() || [],
   total_items: 0,
   total_amount: 0,
-  tax: 0,
+  tax: 377,
   shipping_fee: 534,
 }
 
@@ -83,11 +84,11 @@ const cartSlice = createSlice({
       state.cart = tempCart
       addCartToLocalStoreage(state.cart)
     },
+
     clearCart: (state) => {
       state.cart = []
       state.total_items = 0
       state.total_amount = 0
-      state.tax = 0
       removeCartFromLocalStorage()
     },
     countCartTotal: (state) => {
@@ -100,7 +101,7 @@ const cartSlice = createSlice({
         },
         { total_items: 0, total_amount: 0 }
       )
-      state.tax = total_amount * 0.0625
+
       state.total_items = total_items
       state.total_amount = total_amount
     },

@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk, current } from '@reduxjs/toolkit'
 import customeFetch from '../../utils/customeFetch'
-
+import { toast } from 'react-toastify'
 const initialBilling = {
   address: {
     line1: '',
@@ -23,7 +23,7 @@ export const createOrder = createAsyncThunk(
   async (item, thunkAPI) => {
     try {
       const { data } = await customeFetch.post('/orders', item)
-      console.log('order created', data)
+
       return data
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.msg)
@@ -42,8 +42,6 @@ export const updateOrder = createAsyncThunk(
         address,
       })
 
-      console.log('order/update', data)
-
       return data
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.msg)
@@ -58,6 +56,12 @@ const orderSlice = createSlice({
     toggleAddress: (state, { payload }) => {
       const { value, name } = payload
       state.address[name] = value
+    },
+    clearOrder: (state) => {
+      state.address.line1 = initialBilling.address.line1
+      state.address.city = initialBilling.address.city
+      state.address.state = initialBilling.address.state
+      state.address.postal_code = initialBilling.address.postal_code
     },
   },
   extraReducers: (builder) => {
@@ -79,6 +83,7 @@ const orderSlice = createSlice({
       .addCase(createOrder.rejected, (state, { payload }) => {
         state.orderLoading = false
         state.orderError = true
+        toast.error(payload)
       })
       .addCase(updateOrder.pending, (state, { payload }) => {
         state.orderLoading = true
@@ -87,15 +92,14 @@ const orderSlice = createSlice({
       .addCase(updateOrder.fulfilled, (state, { payload }) => {
         state.orderLoading = false
         state.orderError = false
-
-        console.log('update payment:', payload)
       })
       .addCase(updateOrder.rejected, (state, { payload }) => {
         state.orderLoading = false
         state.orderError = true
+        toast.error(payload)
       })
   },
 })
 
-export const { toggleAddress } = orderSlice.actions
+export const { toggleAddress, clearOrder } = orderSlice.actions
 export default orderSlice.reducer

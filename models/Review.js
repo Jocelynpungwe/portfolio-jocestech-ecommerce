@@ -106,9 +106,14 @@ ReviewSchema.post('save', async function () {
   await this.constructor.groupRating(this.product)
 })
 
+ReviewSchema.pre('deleteOne', async function (next) {
+  this.doc = await this.model.findOne(this.getQuery())
+  next()
+})
+
 ReviewSchema.post('deleteOne', async function () {
-  await this.constructor.calculateAvarageRating(this.product)
-  await this.constructor.groupRating(this.product)
+  await this.doc.constructor.calculateAvarageRating(this.doc.product)
+  await this.doc.constructor.groupRating(this.doc.product)
 })
 
 module.exports = mongoose.model('Review', ReviewSchema)

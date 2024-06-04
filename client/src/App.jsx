@@ -12,6 +12,7 @@ import {
   SingleProductPage,
   RegistrationOrLoginPage,
   PaymentSuccessfullPage,
+  SettingPage,
 } from './pages'
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
           path="payment-successfull"
           element={<PaymentSuccessfullPage />}
         />
+        <Route path="setting" element={<SettingPage />} />
 
         <Route path="*" element={<ErrorPage />} />
       </Routes>

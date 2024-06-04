@@ -9,14 +9,14 @@ const PaymentSuccessfullPage = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const { order, address } = useSelector((store) => store.order)
-  const { cart, shipping_fee, total_amount } = useSelector(
+  const { cart, shipping_fee, total_amount, tax } = useSelector(
     (store) => store.cart
   )
 
   useEffect(() => {
     dispatch(updateOrder({ order, address }))
     window.scrollTo(0, 0)
-    useEffect(() => {
+    setTimeout(() => {
       navigate('/')
     }, 3000)
   }, [])
@@ -58,10 +58,8 @@ const PaymentSuccessfullPage = () => {
               })}
             </div>
             <p>Shipping Fee: {formatPrice(shipping_fee)}</p>
-            <p>
-              FINAL PRICE:{' '}
-              {formatPrice(formatPrice(total_amount + shipping_fee))}
-            </p>
+            <p>Tax: {formatPrice(tax)}</p>
+            <p>FINAL PRICE: {formatPrice(total_amount + shipping_fee + tax)}</p>
           </article>
           <p>
             <strong>Invoice Will Be Emailed Shortly</strong>
