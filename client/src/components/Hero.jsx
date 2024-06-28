@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import heroBcg from '../assets/hero-bcg.svg'
 
 const Hero = () => {
   return (
@@ -20,9 +19,7 @@ const Hero = () => {
             </Link>
           </div>
         </article>
-        <article className="img-container">
-          {/* <img src={heroBcg} alt="phone drawing" className="main-img" /> */}
-        </article>
+        <article className="img-container"></article>
       </Wrapper>
     </section>
   )
@@ -32,23 +29,20 @@ const Wrapper = styled.section`
   height: calc(100vh - 5rem);
   display: grid;
   place-items: center;
-  .img-container {
-    display: none;
-  }
+
   .container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 90px;
+    margin-top: 5.625rem;
   }
 
   h1 {
     color: #fff;
     text-align: center;
     font-family: Manrope;
-    /* font-size: 45px; */
-    font-size: 36px;
+    font-size: 2.25rem;
     font-style: normal;
     font-weight: 700;
     line-height: 35px; /* 103.571% */
@@ -60,7 +54,7 @@ const Wrapper = styled.section`
     color: #fff;
     text-align: center;
     font-family: Manrope;
-    font-size: 14px;
+    font-size: 0.875rem;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -73,7 +67,7 @@ const Wrapper = styled.section`
     color: #fff;
     text-align: center;
     font-family: Manrope;
-    font-size: 15px;
+    font-size: 0.9375rem;
     font-style: normal;
     font-weight: 500;
     line-height: 25px; /* 166.667% */
@@ -83,7 +77,7 @@ const Wrapper = styled.section`
 
   @media (min-width: 768px) {
     h1 {
-      font-size: 56px;
+      font-size: 3.5rem;
       line-height: 58px;
       width: 490px;
     }
@@ -93,7 +87,6 @@ const Wrapper = styled.section`
   }
 
   @media (min-width: 1020px) {
-    /* height: calc(100vh - 5rem); */
     grid-template-columns: 1fr 1fr;
     gap: 8rem;
 
@@ -112,31 +105,6 @@ const Wrapper = styled.section`
 
     .hero-description {
       text-align: left;
-    }
-
-    .hero-btn {
-      padding: 0.75rem 1.5rem;
-      font-size: 1rem;
-    }
-    .img-container {
-      display: block;
-      position: relative;
-    }
-    .main-img {
-      width: 100%;
-      height: 550px;
-      position: relative;
-      border-radius: var(--radius);
-      display: block;
-      object-fit: cover;
-    }
-    .accent-img {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 250px;
-      transform: translateX(-50%);
-      border-radius: var(--radius);
     }
   }
 `

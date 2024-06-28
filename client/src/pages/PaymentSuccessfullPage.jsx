@@ -1,20 +1,17 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { updateOrder } from '../features/order/orderSlice'
 import styled from 'styled-components'
 import { formatPrice } from '../utils/helpers'
 import { useNavigate } from 'react-router-dom'
 
 const PaymentSuccessfullPage = () => {
   const navigate = useNavigate()
-  const dispatch = useDispatch()
-  const { order, address } = useSelector((store) => store.order)
+
   const { cart, shipping_fee, total_amount, tax } = useSelector(
     (store) => store.cart
   )
 
   useEffect(() => {
-    dispatch(updateOrder({ order, address }))
     window.scrollTo(0, 0)
     setTimeout(() => {
       navigate('/')

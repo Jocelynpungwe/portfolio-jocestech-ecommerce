@@ -5,19 +5,14 @@ import styled from 'styled-components'
 const SpecialProductThree = ({ products }) => {
   return (
     <Wrapper className="section-center">
-      <div class="homepage-product-YX1-earphones">
-        <div className="special-product-yx1-earphone-background"></div>
-        {/* <img src={specialImage} alt="earphones" /> */}
-
-        <div class="homepage-product-YX1-earphones-container">
+      <div class="homepage-product">
+        <div className="special-product-two"></div>
+        <div class="homepage-product-container">
           {products
             .filter((product) => product.name === 'YX1 WIRELESS EARPHONES')
             .map((product) => {
               return (
-                <div
-                  class="homepage-product-YX1-earphones-info"
-                  key={product.name}
-                >
+                <div class="homepage-product-info" key={product.name}>
                   <h2>YX1 EARPHONES</h2>
                   <Link
                     class="btn secondary-btn"
@@ -35,11 +30,10 @@ const SpecialProductThree = ({ products }) => {
 }
 
 const Wrapper = styled.section`
-  .homepage-product-YX1-earphones {
+  .homepage-product {
     display: grid;
-    /* place-items: center; */
-    margin-top: 24px;
-    margin-bottom: 50px;
+    margin-top: 1.5rem;
+    margin-bottom: 3.125rem;
   }
 
   img {
@@ -47,31 +41,31 @@ const Wrapper = styled.section`
     height: 200px;
   }
 
-  .homepage-product-YX1-earphones-container {
+  .homepage-product-container {
     text-align: left;
     width: 100%;
     height: 200px;
     flex-shrink: 0;
     border-radius: 8px;
     background: #f1f1f1;
-    margin-top: 20px;
-    padding-top: 41px;
-    padding-left: 20px;
+    margin-top: 1.25rem;
+    padding-top: 2.5625rem;
+    padding-left: 1.25rem;
   }
   @media (min-width: 768px) {
-    .homepage-product-YX1-earphones {
+    .homepage-product {
       grid-template-columns: 1fr 1fr;
     }
-    .homepage-product-YX1-earphones-container {
+    .homepage-product-container {
       margin-top: 0;
     }
-    .homepage-product-YX1-earphones-info {
-      margin-left: 41px;
+    .homepage-product-info {
+      margin-left: 2.5625rem;
     }
   }
   @media (min-width: 1020px) {
-    .homepage-product-YX1-earphones-info {
-      margin-left: 55px;
+    .homepage-product-info {
+      margin-left: 3.4375rem;
     }
   }
 `

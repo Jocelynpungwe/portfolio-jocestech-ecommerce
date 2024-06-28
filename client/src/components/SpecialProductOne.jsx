@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 const SpecialProductOne = ({ products }) => {
   return (
     <Wrapper className="section-center">
-      <div className="homepage-product-zx9-speaker">
+      <div className="homepage-product">
         <div className="oval-container">
           <div className="oval-shape-one">
             <div className="oval-shape-two">
@@ -35,14 +35,6 @@ const SpecialProductOne = ({ products }) => {
                 </>
               )
             })}
-
-          {/* <p>
-            Upgrade to premium speakers that are phenomenally built to deliver
-            truly remarkable sound.
-          </p>
-          <Link className="btn third-btn" to="products/speakers">
-            see product
-          </Link> */}
         </div>
       </div>
     </Wrapper>
@@ -55,11 +47,11 @@ const Wrapper = styled.section`
   background: var(--primary-chocolate);
   text-align: center;
   color: var(--actual-white);
-  padding-top: 55px;
-  margin-bottom: 60px;
+  padding-top: 3.4375rem;
+  margin-bottom: 3.75rem;
 
-  .homepage-product-zx9-speaker {
-    margin-top: -40px;
+  .homepage-product {
+    margin-top: -2.5rem;
   }
   .oval-container {
     display: flex;
@@ -77,7 +69,7 @@ const Wrapper = styled.section`
   .oval-shape-one {
     width: 600px;
     height: 300px;
-    margin-top: -60px;
+    margin-top: -3.75rem;
     border-bottom: 1px solid var(--actual-white);
   }
 
@@ -104,13 +96,13 @@ const Wrapper = styled.section`
   }
 
   h2 {
-    font-size: 36px;
+    font-size: 2.25rem;
     font-weight: 700;
     line-height: 40px; /* 111.111% */
     letter-spacing: 1.286px;
     text-transform: uppercase;
-    margin-top: -50px;
-    margin-bottom: 24px;
+    margin-top: -3.125rem;
+    margin-bottom: 1.5rem;
   }
   .title-span {
     display: block;
@@ -120,7 +112,7 @@ const Wrapper = styled.section`
     color: #fff;
     text-align: center;
     font-family: Manrope;
-    font-size: 15px;
+    font-size: 0.9375rem;
     font-style: normal;
     font-weight: 500;
     line-height: 25px; /* 166.667% */
@@ -128,7 +120,7 @@ const Wrapper = styled.section`
     max-width: 280px;
 
     margin: 0 auto;
-    margin-bottom: 25px;
+    margin-bottom: 1.5625rem;
   }
   .btn-quarterly {
     background: #000;
@@ -137,7 +129,7 @@ const Wrapper = styled.section`
     .oval-shape-one {
       border-left: 1px solid var(--actual-white);
       border-right: 1px solid var(--actual-white);
-      margin-top: -50px;
+      margin-top: -3.125rem;
     }
   }
   @media (min-width: 1020px) {
@@ -149,7 +141,7 @@ const Wrapper = styled.section`
     h2 {
       color: #fff;
       font-family: Manrope;
-      font-size: 40px;
+      font-size: 2.5rem;
       font-style: normal;
       font-weight: 700;
       line-height: 58px; /* 103.571% */
@@ -163,7 +155,7 @@ const Wrapper = styled.section`
       margin-left: -3px;
     }
 
-    .homepage-product-zx9-speaker {
+    .homepage-product {
       display: flex;
       margin-top: 0;
     }
@@ -172,9 +164,6 @@ const Wrapper = styled.section`
         width: 410.234px;
         height: 493px;
         flex-shrink: 0;
-        /* width: 1; */
-        /* min-height: 70vh; */
-        /* height: 493px; */
       }
     }
     .oval-shape-one {
@@ -194,9 +183,6 @@ const Wrapper = styled.section`
       flex-shrink: 0;
       border-bottom: none;
       border-radius: 472px;
-
-      /* border-left: none;
-      border-right: none; */
     }
 
     .oval-shape-two {
@@ -204,30 +190,27 @@ const Wrapper = styled.section`
       height: 542px;
       flex-shrink: 0;
       border-bottom: none;
-      /* border-left: none;
-      border-right: none; */
     }
 
     .oval-container {
-      /* margin-right: 150px; */
-      margin-top: -170px;
-      margin-left: -150px;
+      margin-top: -10.625rem;
+      margin-left: -9.375rem;
     }
     .project-container {
-      margin-left: -180px;
-      margin-top: 50px;
+      margin-left: -11.25rem;
+      margin-top: 3.125rem;
     }
   }
 
   @media (min-width: 1220px) {
     h2 {
-      font-size: 50px;
+      font-size: 3.125rem;
     }
     p {
       width: 450px;
     }
     .project-container {
-      margin-left: -100px;
+      margin-left: -6.25rem;
     }
   }
 `

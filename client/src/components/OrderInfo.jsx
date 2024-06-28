@@ -3,8 +3,7 @@ import styled from 'styled-components'
 import { formatPrice } from '../utils/helpers'
 import { FaSearch } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
-
-const Product = ({ image, name, price, id }) => {
+const OrderInfo = ({ image, name, price, id, amount, colors }) => {
   return (
     <Wrapper>
       <div className="container">
@@ -13,26 +12,40 @@ const Product = ({ image, name, price, id }) => {
           <FaSearch />
         </Link>
       </div>
-      <footer>
+      <section className="wrapper">
         <h5>{name}</h5>
         <p>{formatPrice(price)}</p>
-      </footer>
+        {amount && <p>Amount: {amount}</p>}
+        {colors && colors.length > 0 && (
+          <div className="color-container">
+            {colors.map((color, index) => {
+              return (
+                <div key={index} className="color-container">
+                  <div
+                    style={{ backgroundColor: color }}
+                    className="color-span"
+                  ></div>
+                </div>
+              )
+            })}
+          </div>
+        )}
+      </section>
     </Wrapper>
   )
 }
 
 const Wrapper = styled.article`
-  box-shadow: var(--shadow-1);
-  padding: 1rem;
   .container {
     position: relative;
     background: var(--clr-black);
     border-radius: var(--radius);
+    width: 100%;
   }
   img {
-    width: 100%;
     display: block;
     object-fit: cover;
+    width: 100%;
     border-radius: var(--radius);
     transition: var(--transition);
   }
@@ -41,7 +54,7 @@ const Wrapper = styled.article`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: var(--primary-chocolate);
+    background: var(--primary-900);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -53,7 +66,7 @@ const Wrapper = styled.article`
     cursor: pointer;
     svg {
       font-size: 1.25rem;
-      color: var(--actual-black);
+      color: var(--black);
     }
   }
   .container:hover img {
@@ -62,22 +75,41 @@ const Wrapper = styled.article`
   .container:hover .link {
     opacity: 1;
   }
-  footer {
-    margin-top: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  footer h5,
-  footer p {
-    margin-bottom: 0;
-    font-weight: 400;
+
+  h5,
+  p {
+    text-align: center;
+    opacity: 0.5;
   }
 
-  footer p {
-    color: var(--secondy-chocolate);
-    letter-spacing: var(--spacing);
+  h5 {
+    font-size: 1rem;
+    margin: 5px 0;
+  }
+
+  p {
+    margin: 0 0 5px 0;
+  }
+
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .color-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .color-span {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    border: 2px solid var(--grey-50);
   }
 `
 
-export default Product
+export default OrderInfo

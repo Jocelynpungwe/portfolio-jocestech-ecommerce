@@ -3,11 +3,25 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
 import { updateUser, updateUserPassword } from '../features/user/userSlice'
-import { FormRow, SmallWebDescription } from '../components'
+import {
+  Error,
+  FormRow,
+  Loading,
+  SmallWebDescription,
+  UserOrders,
+} from '../components'
 import { useNavigate } from 'react-router-dom'
+import {
+  getCurrentUserOrders,
+  updateStatus,
+} from '../features/order/orderSlice'
 
 const SettingPage = () => {
   const { isLoading, user } = useSelector((store) => store.user)
+  const { orderLoading: loading, orderError: error } = useSelector(
+    (store) => store.order
+  )
+
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const initialData = {
@@ -24,7 +38,9 @@ const SettingPage = () => {
     if (!user) {
       navigate('/')
       setUserData(initialData)
+      return
     }
+    dispatch(getCurrentUserOrders())
   }, [user])
 
   const handleSubmit = (e) => {
@@ -56,6 +72,14 @@ const SettingPage = () => {
     setUserData((prevData) => {
       return { ...prevData, [name]: value }
     })
+  }
+
+  if (loading) {
+    return <Loading />
+  }
+
+  if (error) {
+    return <Error />
   }
 
   return (
@@ -119,7 +143,8 @@ const SettingPage = () => {
           </button>
         </div>
       </form>
-
+      <h2>View All Orders</h2>
+      <UserOrders />
       <SmallWebDescription />
     </Wrapper>
   )
@@ -143,7 +168,7 @@ const Wrapper = styled.section`
   }
 
   .form {
-    margin: 0;
+    margin: 0 0 1rem 0;
     border-radius: 0;
     box-shadow: var(--dark-shadow);
     padding: 1rem;

@@ -3,11 +3,11 @@ import styled from 'styled-components'
 import { PageHero } from '../components'
 import aboutImg from '../assets/images/about-image.jpg'
 
-import aboutBcg from '../assets/about-bcg.svg'
 const AboutPage = () => {
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
+
   return (
     <main>
       <PageHero title="about" />

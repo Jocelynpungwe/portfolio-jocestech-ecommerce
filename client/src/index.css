@@ -51,6 +51,8 @@ Variables
   --radius: 0.25rem;
   --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  --shadow-1: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
   --max-width: 1170px;
   --fixed-width: 620px;
 }
@@ -132,10 +134,10 @@ button {
   padding-bottom: 80px;
 }
 
-.homepage-product-zx7-speaker {
+.special-product-one {
   background-image: url('./assets/home/mobile/image-speaker-zx7.jpg');
 }
-.special-product-yx1-earphone-background {
+.special-product-two {
   background-image: url('./assets/home/mobile/image-earphones-yx1.jpg');
   background-size: cover;
   background-position: center;
@@ -143,7 +145,7 @@ button {
   height: 200px;
   flex-shrink: 0;
 }
-.audio-product-background {
+.special-product-three {
   background-image: url('./assets/home/mobile/image-best-gear.jpg');
   background-size: cover;
   background-position: center;
@@ -152,13 +154,13 @@ button {
 }
 
 @media (min-width: 768px) {
-  .homepage-product-zx7-speaker {
+  .special-product-one {
     background-image: url('./assets/home/tablet/image-speaker-zx7.jpg');
   }
-  .special-product-yx1-earphone-background {
+  .special-product-two {
     background-image: url('./assets/home/tablet/image-earphones-yx1.jpg');
   }
-  .audio-product-background {
+  .special-product-three {
     background-image: url('./assets/home/tablet/image-best-gear.jpg');
   }
 }
@@ -166,13 +168,13 @@ button {
   .background-hero {
     background-image: url('./assets/home/desktop/image-hero.jpg');
   }
-  .homepage-product-zx7-speaker {
+  .special-product-one {
     background-image: url('./assets/home/desktop/image-speaker-zx7.jpg');
   }
-  .special-product-yx1-earphone-background {
+  .special-product-two {
     background-image: url('./assets/home/desktop/image-earphones-yx1.jpg');
   }
-  .audio-product-background {
+  .special-product-three {
     background-image: url('./assets/home/desktop/image-best-gear.jpg');
     height: 400px;
   }
@@ -289,7 +291,8 @@ button {
 
 .third-btn:hover {
   color: var(--actual-white);
-  background: var(--primary-blackish);
+  background: transparent;
+  border: 1px solid #000;
 }
 
 .title {

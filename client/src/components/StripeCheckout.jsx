@@ -9,7 +9,9 @@ import { Elements } from '@stripe/react-stripe-js'
 import CheckoutForm from './CheckoutForm'
 import { createOrder } from '../features/order/orderSlice'
 
-const stripePromise = loadStripe(process.env.Strip_Public)
+const stripePromise = loadStripe(
+  'pk_test_51OHPzlFH4y87VgL9O1218aN9cpEjSBMflRtM5O7WqbDqunDRQ396NK19NR5rarvecpeR0miJ0x7emWbClXwjr9Tj001cFMqozM'
+)
 
 const StripeCheckout = () => {
   const dispatch = useDispatch()

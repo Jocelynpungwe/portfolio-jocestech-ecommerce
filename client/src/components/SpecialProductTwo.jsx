@@ -5,12 +5,12 @@ import styled from 'styled-components'
 const SpecialProductTwo = ({ products }) => {
   return (
     <Wrapper className="section-center">
-      <div className="homepage-product-zx7-speaker">
+      <div className="special-product-one">
         {products
           .filter((product) => product.name === 'ZX7 SPEAKER')
           .map((product) => {
             return (
-              <div className="homepage-product-zx7-speaker-container">
+              <div className="special-product-one-container">
                 <h2>{product.name}</h2>
                 <Link
                   class="btn secondary-btn"
@@ -28,46 +28,44 @@ const SpecialProductTwo = ({ products }) => {
 }
 
 const Wrapper = styled.section`
-  margin-bottom: 60px;
-  .homepage-product-zx7-speaker {
+  margin-bottom: 3.75rem;
+  .special-product-one {
     display: flex;
     align-items: center;
-    /* background: gray;
-    background-image: url({specialImge}); */
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 90% center;
     height: 367px;
-    margin-top: 25px;
-    padding-left: 20px;
+    margin-top: 1.5625rem;
+    padding-left: 1.25rem;
   }
 
   h2 {
     color: #000;
-    font-size: 28px;
+    font-size: 1.75rem;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
     letter-spacing: 2px;
     text-transform: uppercase;
-    margin-bottom: 32px;
+    margin-bottom: 2rem;
   }
   .btn-secondary {
     color: #000000;
     border: 1px solid #000;
-    margin-top: 24px;
+    margin-top: 1.5rem;
   }
-  .homepage-product-zx7-speaker-container {
-    margin-left: 35px;
+  .special-product-one-container {
+    margin-left: 2.1875rem;
   }
   @media (min-width: 768px) {
-    .homepage-product-zx7-speaker-container {
-      margin-left: 64px;
+    .special-product-one-container {
+      margin-left: 4rem;
     }
   }
   @media (min-width: 1020px) {
-    .homepage-product-zx7-speaker-container {
-      margin-left: 100px;
+    .special-product-one-container {
+      margin-left: 6.25rem;
     }
   }
 `

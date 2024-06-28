@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import AppLogo from './AppLogo'
 import { FaBars } from 'react-icons/fa'
@@ -74,7 +73,6 @@ const NavContainer = styled.nav`
   .nav-toggle {
     background: transparent;
     border: transparent;
-    /* color: var(--clr-primary-5); */
     color: white;
     cursor: pointer;
     svg {
@@ -104,7 +102,6 @@ const NavContainer = styled.nav`
         margin: 0 0.5rem;
       }
       a {
-        /* color: var(--clr-grey-3); */
         color: #fff;
         font-size: 1rem;
         text-transform: capitalize;

@@ -9,11 +9,6 @@ import { clearOrder, toggleAddress } from '../features/order/orderSlice'
 import { updateOrder } from '../features/order/orderSlice'
 import { clearCart } from '../features/cart/cartSlice'
 
-const initialCustumerState = {
-  fullName: '',
-  email: '',
-}
-
 const CheckoutForm = ({ order }) => {
   const stripe = useStripe()
   const elements = useElements()
@@ -24,14 +19,14 @@ const CheckoutForm = ({ order }) => {
 
   const { address } = useSelector((store) => store.order)
   const { user } = useSelector((store) => store.user)
-  const { cart, tax, shipping_fee, total_amount } = useSelector(
-    (store) => store.cart
-  )
+  const { tax, shipping_fee, total_amount } = useSelector((store) => store.cart)
 
   const dispatch = useDispatch()
 
   function changeBilling(e) {
-    dispatch(toggleAddress(e.target))
+    dispatch(
+      toggleAddress({ name: e.target.name, value: e.target.value, user })
+    )
   }
 
   useEffect(() => {
@@ -52,8 +47,6 @@ const CheckoutForm = ({ order }) => {
     e.preventDefault()
 
     if (!stripe || !elements) {
-      // Stripe.js hasn't yet loaded.
-      // Make sure to disable form submission until Stripe.js has loaded.
       return
     }
 
@@ -61,10 +54,7 @@ const CheckoutForm = ({ order }) => {
 
     const { error, paymentIntent } = await stripe.confirmPayment({
       elements,
-      confirmParams: {
-        // Make sure to change this to your payment completion page
-        // return_url: 'http://localhost:3000/payment-successfull',
-      },
+      confirmParams: {},
       redirect: 'if_required',
     })
 
@@ -80,7 +70,6 @@ const CheckoutForm = ({ order }) => {
 
       navigate('/payment-successfull')
       setMessage('Payment successful! Thank you for your purchase.')
-      // Handle post-payment logic here, such as updating order status in the backend
     } else {
       setMessage('Payment processing. Please wait.')
     }

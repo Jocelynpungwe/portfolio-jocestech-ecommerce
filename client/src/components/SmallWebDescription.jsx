@@ -6,7 +6,7 @@ const SmallWebDescription = () => {
   return (
     <Wrapper className="section section-center">
       <div className="audio-headset-product">
-        <div className="audio-product-background"></div>
+        <div className="special-product-three"></div>
         {/* <img src={image} alt="person with headphones on" /> */}
         <div className="project-container">
           <h2>

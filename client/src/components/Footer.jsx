@@ -59,11 +59,6 @@ const Footer = () => {
           </div>
         </div>
       </footer>
-      {/* <h5>
-        &copy; {new Date().getFullYear()}
-        <span> JocesTech </span>
-      </h5>
-      <h5>All rights reserved</h5> */}
     </Container>
   )
 }
@@ -85,48 +80,45 @@ const Container = styled.footer`
 
   .footer-link {
     display: block;
-    margin-top: 20px;
+    margin-top: 1.25rem;
     text-decoration: none;
     color: var(--white);
   }
 
   .footer-paragraph,
   .copyright {
-    font-size: 15px;
+    font-size: 0.9375rem;
     line-height: 25px; /* 166.667% */
     opacity: 0.5;
   }
 
   .footer-paragraph {
-    margin: 25px 0;
+    margin: 1.5625rem 0;
     font-weight: 500;
-    max-width: 540px;
+    max-width: 33.75rem;
   }
 
   .copyright {
     font-weight: 700;
-    margin-bottom: 25px;
+    margin-bottom: 1.5625rem;
   }
 
   .link {
-    margin-top: 30px;
+    margin-top: 1.875rem;
   }
 
   .nav-links {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 15px;
-    /* li {
-      margin: 0 0.5rem;
-    } */
+    gap: 0.9375rem;
+
     a {
-      /* color: var(--clr-grey-3); */
       color: #fff;
       font-size: 1rem;
       text-transform: capitalize;
       letter-spacing: var(--spacing);
-      /* padding: 0.5rem; */
+
       &:hover {
         border-bottom: 2px solid var(--primary-chocolate);
       }
@@ -139,7 +131,7 @@ const Container = styled.footer`
     .nav-links {
       flex-direction: row;
       justify-content: start;
-      margin-top: 15px;
+      margin-top: 0.9375rem;
     }
 
     .copyright-container {
@@ -161,23 +153,6 @@ const Container = styled.footer`
       margin-top: 0;
     }
   }
-
-  /* height: 5rem;
-  
-  span {
-    color: var(--clr-primary-5);
-  }
-  h5 {
-    color: var(--clr-white);
-    margin: 0.1rem;
-
-    font-weight: 400;
-    text-transform: none;
-    line-height: 1.25;
-  } */
-  /* @media (min-width: 776px) {
-    flex-direction: row;
-  } */
 `
 
 export default Footer

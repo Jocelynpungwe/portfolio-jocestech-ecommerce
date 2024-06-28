@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import AppLogo from './AppLogo'
 import { Link } from 'react-router-dom'
 import { FaTimes } from 'react-icons/fa'

@@ -35,6 +35,10 @@ import AdvertismentSection from './AdvertismentSection'
 import RecommendedProducts from './RecommendedProducts'
 import Pagination from './Pagination'
 import AddReview from './AddReview'
+import OrderInfo from './OrderInfo'
+import ShippingInfo from './ShippingInfo'
+import BillingInfo from './BillingInfo'
+import UserOrders from './UserOrders'
 
 export {
   Navbar,
@@ -73,4 +77,8 @@ export {
   RecommendedProducts,
   Pagination,
   AddReview,
+  OrderInfo,
+  ShippingInfo,
+  BillingInfo,
+  UserOrders,
 }

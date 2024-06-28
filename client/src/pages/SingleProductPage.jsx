@@ -160,7 +160,7 @@ const Wrapper = styled.main`
   .feature-desc {
     color: #000;
     font-family: Manrope;
-    font-size: 15px;
+    font-size: 0.9375rem;
     font-style: normal;
     font-weight: 500;
     line-height: 25px; /* 166.667% */
@@ -170,13 +170,13 @@ const Wrapper = styled.main`
   h6 {
     color: #000;
     font-family: Manrope;
-    font-size: 24px;
+    font-size: 1.5rem;
     font-style: normal;
     font-weight: 700;
     line-height: 36px; /* 150% */
     letter-spacing: 0.857px;
     text-transform: uppercase;
-    margin: 20px 0;
+    margin: 1.25rem 0;
   }
 
   .product-center {
@@ -205,7 +205,7 @@ const Wrapper = styled.main`
     p {
       color: #000;
       font-family: Manrope;
-      font-size: 15px;
+      font-size: 0.9375rem;
       font-style: normal;
       font-weight: 500;
       line-height: 25px; /* 166.667% */
@@ -213,7 +213,7 @@ const Wrapper = styled.main`
       span {
         color: var(--primary-chocolate);
         font-family: Manrope;
-        font-size: 15px;
+        font-size: 0.9375rem;
         font-style: normal;
         font-weight: 700;
         line-height: 25px; /* 166.667% */
@@ -222,14 +222,14 @@ const Wrapper = styled.main`
   }
 
   .feature-and-inbox-container {
-    margin: 50px 0;
+    margin: 3.125rem 0;
   }
 
   @media (min-width: 550px) {
     .product-image-container {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      grid-column-gap: 10px;
+      grid-column-gap: 0.625rem;
     }
   }
 
