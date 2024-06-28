@@ -2,6 +2,12 @@ require('dotenv').config()
 require('express-async-errors')
 
 const path = require('path')
+
+// extra security packages
+
+const helmet = require('helmet')
+const xss = require('xss-clean')
+
 // express
 const express = require('express')
 const app = express()
@@ -27,6 +33,8 @@ const notFoundMiddleware = require('./middleware/not-found')
 app.use(express.static(path.resolve(__dirname, './client/dist')))
 app.use(express.json())
 app.use(cookieParser(process.env.JWT_SECRET))
+app.use(helmet())
+app.use(xss())
 
 app.use(express.static('./public'))
 app.use(fileupload())
