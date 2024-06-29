@@ -21,9 +21,9 @@ const SpecialProductOne = ({ products }) => {
           </h2>
           {products
             .filter((product) => product.name === 'ZX9 SPEAKER')
-            .map((product) => {
+            .map((product, index) => {
               return (
-                <>
+                <div key={index}>
                   <p>{product.description}</p>
                   <Link
                     className="btn third-btn"
@@ -32,7 +32,7 @@ const SpecialProductOne = ({ products }) => {
                   >
                     see product
                   </Link>
-                </>
+                </div>
               )
             })}
         </div>

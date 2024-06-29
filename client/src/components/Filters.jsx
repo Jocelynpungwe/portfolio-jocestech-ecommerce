@@ -209,11 +209,6 @@ const Filters = () => {
 }
 
 const Wrapper = styled.section`
-  form {
-    display: flex;
-    justify-content: space-between;
-  }
-
   .form-control {
     margin-bottom: 1.25rem;
     h5 {

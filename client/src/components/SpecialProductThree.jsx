@@ -5,17 +5,17 @@ import styled from 'styled-components'
 const SpecialProductThree = ({ products }) => {
   return (
     <Wrapper className="section-center">
-      <div class="homepage-product">
+      <div className="homepage-product">
         <div className="special-product-two"></div>
-        <div class="homepage-product-container">
+        <div className="homepage-product-container">
           {products
             .filter((product) => product.name === 'YX1 WIRELESS EARPHONES')
             .map((product) => {
               return (
-                <div class="homepage-product-info" key={product.name}>
+                <div className="homepage-product-info" key={product.name}>
                   <h2>YX1 EARPHONES</h2>
                   <Link
-                    class="btn secondary-btn"
+                    className="btn secondary-btn"
                     to={`products/${product._id}`}
                   >
                     see product

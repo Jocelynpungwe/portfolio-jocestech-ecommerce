@@ -37,6 +37,7 @@ const createOrder = async (req, res) => {
       color: productId[1],
       product: _id,
     }
+
     // add item to order
     orderItems = [...orderItems, singleOrderItem]
     // calculate subtotal

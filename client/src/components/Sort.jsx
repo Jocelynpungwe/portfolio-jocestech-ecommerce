@@ -4,7 +4,6 @@ import styled from 'styled-components'
 import {
   setGridView,
   setListView,
-  sortProduct,
   updateSort,
 } from '../features/filters/filterSlice'
 import { useSelector, useDispatch } from 'react-redux'

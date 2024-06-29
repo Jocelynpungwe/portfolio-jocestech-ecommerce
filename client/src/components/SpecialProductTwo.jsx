@@ -8,9 +8,9 @@ const SpecialProductTwo = ({ products }) => {
       <div className="special-product-one">
         {products
           .filter((product) => product.name === 'ZX7 SPEAKER')
-          .map((product) => {
+          .map((product, index) => {
             return (
-              <div className="special-product-one-container">
+              <div className="special-product-one-container" key={index}>
                 <h2>{product.name}</h2>
                 <Link
                   class="btn secondary-btn"

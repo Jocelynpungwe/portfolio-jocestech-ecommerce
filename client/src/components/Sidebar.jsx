@@ -5,10 +5,7 @@ import { links } from '../utils/constants'
 import styled from 'styled-components'
 import CartButtons from './CartButtons'
 import { useSelector, useDispatch } from 'react-redux'
-import {
-  toggleSideBar,
-  toggleCloseSideBar,
-} from '../features/toggle/toggleSlice'
+import { toggleCloseSideBar } from '../features/toggle/toggleSlice'
 const Sidebar = () => {
   const { user } = useSelector((store) => store.user)
   const { isSideBarOpen } = useSelector((store) => store.toggle)

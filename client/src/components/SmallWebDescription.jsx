@@ -1,13 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
-import Contact from './Contact'
 
 const SmallWebDescription = () => {
   return (
     <Wrapper className="section section-center">
       <div className="audio-headset-product">
         <div className="special-product-three"></div>
-        {/* <img src={image} alt="person with headphones on" /> */}
         <div className="project-container">
           <h2>
             Bringing you the{' '}
@@ -24,7 +22,6 @@ const SmallWebDescription = () => {
             make Jocestech the best place to buy your portable gadget.
           </p>
         </div>
-        {/* <Contact /> */}
       </div>
     </Wrapper>
   )
