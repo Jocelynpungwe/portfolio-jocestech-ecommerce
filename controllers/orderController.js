@@ -57,6 +57,14 @@ const createOrder = async (req, res) => {
     subtotal,
     tax,
     shippingFee,
+    shippingAddress: {
+      name: req.user.name,
+      email: req.user.email,
+      line1: 'pending',
+      city: 'pending',
+      state: 'pending',
+      postal_code: 'pending',
+    },
     clientSecret: paymentIntent.client_secret,
     user: req.user.userId,
   })
